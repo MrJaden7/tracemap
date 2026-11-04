@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: tracemap-postgres
+    environment:
+      POSTGRES_DB: ${TRACEMAP_DB_NAME:-tracemap}
+      POSTGRES_USER: ${TRACEMAP_DB_USER:-tracemap}
+      POSTGRES_PASSWORD: ${TRACEMAP_DB_PASSWORD:-tracemap}
+    ports:
+      # 5440 on the host avoids clashing with any local Postgres on 5432
+      - "${TRACEMAP_DB_PORT:-5440}:5432"
+    volumes:
+      - tracemap-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${TRACEMAP_DB_USER:-tracemap} -d ${TRACEMAP_DB_NAME:-tracemap}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  tracemap-pgdata:

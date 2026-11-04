@@ -1,0 +1,53 @@
+[project]
+name = "tracemap"
+version = "0.1.0"
+description = "A documentation-first OMOP CDM v5.4 pipeline with end-to-end provenance. Synthetic data only."
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = { text = "MIT" }
+authors = [{ name = "Jaden Menezes" }]
+dependencies = [
+    "dbt-core>=1.10,<1.13",
+    "dbt-postgres>=1.9,<1.12",
+    "jinja2>=3.1",
+    "pandas>=2.2",
+    "psycopg[binary]>=3.2",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "pyyaml>=6.0",
+    "rich>=13.7",
+    "typer>=0.12",
+]
+
+[project.scripts]
+tracemap = "tracemap.cli:app"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=3.7",
+    "pytest>=8.2",
+    "ruff>=0.5",
+    "sqlfluff>=3.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tracemap"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: needs a running Postgres (docker compose up -d)",
+]
+addopts = "-m 'not integration'"

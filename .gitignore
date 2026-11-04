@@ -1,0 +1,50 @@
+# Licensed OMOP vocabularies (Athena) - must never be redistributed
+data/
+*.zip
+CONCEPT*.csv
+VOCABULARY.csv
+DOMAIN.csv
+RELATIONSHIP.csv
+DRUG_STRENGTH.csv
+# The hand-made fake vocabulary for CI is allowed
+!tests/fixtures/vocab/*.csv
+
+# Secrets and local config
+.env
+*.env
+!config/settings.example.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+build/
+dist/
+
+# dbt
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+.user.yml
+
+# Synthea
+output/
+*.jar
+
+# MkDocs
+site/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
