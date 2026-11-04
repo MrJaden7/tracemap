@@ -9,6 +9,7 @@ sources:
   - source_system: synthea
     source_table: raw.synthea_patients
     grain: one row per deceased patient
+    where: "deathdate is not null and deathdate <> ''"
     fields:
       - target: person_id
         rule: lookup

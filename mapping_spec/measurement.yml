@@ -1,0 +1,82 @@
+target_table: measurement
+spec_version: 0.1.0
+description: >
+  Synthea observations with category laboratory or vital-signs become measurements.
+  Other observation categories route to the observation table. Codes are LOINC, units
+  are mapped to UCUM. Numeric values populate value_as_number; non-numeric results are
+  mapped to a value_as_concept_id where a mapping exists.
+
+sources:
+  - source_system: synthea
+    source_table: raw.synthea_observations
+    grain: >-
+      one row per observation, filtered in the intermediate layer to
+      category IN ('laboratory', 'vital-signs')
+    fields:
+      - target: measurement_id
+        rule: cast_int
+        from: _source_row
+
+      - target: person_id
+        rule: lookup
+        from: patient
+        via: etl_meta.person_key_map
+
+      - target: measurement_concept_id
+        rule: standard_concept_map
+        from: code
+        source_vocabulary: LOINC
+        relationship: Maps to
+        on_unmapped: concept_id_0
+
+      - target: measurement_date
+        rule: cast_date
+        from: date
+
+      - target: measurement_datetime
+        rule: cast_datetime
+        from: date
+
+      - target: measurement_type_concept_id
+        rule: constant
+        value: 32817
+        label: EHR
+
+      - target: value_as_number
+        rule: cast_numeric
+        from: value
+        notes: Only when type = 'numeric'; non-numeric rows leave this null.
+
+      - target: value_as_concept_id
+        rule: value_as_concept_map
+        from: value
+        source_vocabulary: SNOMED
+        on_unmapped: concept_id_0
+        notes: Only when type != 'numeric'.
+
+      - target: unit_concept_id
+        rule: unit_map
+        from: units
+        on_unmapped: concept_id_0
+
+      - target: unit_source_value
+        rule: copy
+        from: units
+
+      - target: measurement_source_value
+        rule: copy
+        from: code
+
+      - target: measurement_source_concept_id
+        rule: source_concept_lookup
+        from: code
+        source_vocabulary: LOINC
+
+      - target: value_source_value
+        rule: copy
+        from: value
+
+      - target: visit_occurrence_id
+        rule: lookup
+        from: encounter
+        via: etl_meta.visit_source_key_map

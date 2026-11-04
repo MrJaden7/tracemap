@@ -11,6 +11,9 @@ services:
       - "${TRACEMAP_DB_PORT:-5440}:5432"
     volumes:
       - tracemap-pgdata:/var/lib/postgresql/data
+    # Large hash joins over the 6.9M-row concept table need more shared memory than
+    # Docker's default 64MB.
+    shm_size: 1gb
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${TRACEMAP_DB_USER:-tracemap} -d ${TRACEMAP_DB_NAME:-tracemap}"]
       interval: 5s

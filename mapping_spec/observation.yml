@@ -1,0 +1,80 @@
+target_table: observation
+spec_version: 0.1.0
+description: >
+  Synthea observations that are not laboratory or vital-signs become OMOP observations
+  (survey, social-history, exam, therapy, procedure, imaging). Also receives Synthea
+  conditions and procedures whose SNOMED standard concept is in the Observation domain
+  via domain routing.
+
+sources:
+  - source_system: synthea
+    source_table: raw.synthea_observations
+    grain: >-
+      one row per observation, filtered in the intermediate layer to
+      category NOT IN ('laboratory', 'vital-signs')
+    fields:
+      - target: observation_id
+        rule: cast_int
+        from: _source_row
+
+      - target: person_id
+        rule: lookup
+        from: patient
+        via: etl_meta.person_key_map
+
+      - target: observation_concept_id
+        rule: standard_concept_map
+        from: code
+        source_vocabulary: LOINC
+        relationship: Maps to
+        on_unmapped: concept_id_0
+
+      - target: observation_date
+        rule: cast_date
+        from: date
+
+      - target: observation_datetime
+        rule: cast_datetime
+        from: date
+
+      - target: observation_type_concept_id
+        rule: constant
+        value: 32817
+        label: EHR
+
+      - target: value_as_number
+        rule: cast_numeric
+        from: value
+
+      - target: value_as_string
+        rule: copy
+        from: value
+
+      - target: value_as_concept_id
+        rule: value_as_concept_map
+        from: value
+        source_vocabulary: SNOMED
+        on_unmapped: concept_id_0
+
+      - target: unit_concept_id
+        rule: unit_map
+        from: units
+        on_unmapped: concept_id_0
+
+      - target: unit_source_value
+        rule: copy
+        from: units
+
+      - target: observation_source_value
+        rule: copy
+        from: code
+
+      - target: observation_source_concept_id
+        rule: source_concept_lookup
+        from: code
+        source_vocabulary: LOINC
+
+      - target: visit_occurrence_id
+        rule: lookup
+        from: encounter
+        via: etl_meta.visit_source_key_map

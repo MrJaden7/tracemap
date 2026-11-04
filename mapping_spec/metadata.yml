@@ -1,0 +1,38 @@
+target_table: metadata
+spec_version: 0.1.0
+description: >
+  Free-form metadata about the CDM build. Populated at build time with the ETL
+  version, Synthea version and seed, vocabulary version and the mapping spec version.
+  All values are derived from etl_meta.cdm_run at build time; there is no source CSV.
+
+sources:
+  - source_system: tracemap
+    source_table: etl_meta.cdm_run
+    grain: multiple rows per CDM build, one per metadata item
+    fields:
+      - target: metadata_id
+        rule: cast_int
+        from: _derived_metadata_id
+
+      - target: metadata_concept_id
+        rule: constant
+        value: 0
+        label: No matching concept
+
+      - target: metadata_type_concept_id
+        rule: constant
+        value: 0
+        label: No matching concept
+
+      - target: name
+        rule: copy
+        from: _derived_name
+        notes: etl_version, synthea_version, synthea_seed, vocabulary_version, spec_version.
+
+      - target: value_as_string
+        rule: copy
+        from: _derived_value
+
+      - target: metadata_date
+        rule: copy
+        from: _derived_metadata_date

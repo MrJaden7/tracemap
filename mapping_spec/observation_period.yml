@@ -1,0 +1,38 @@
+target_table: observation_period
+spec_version: 0.1.0
+description: >
+  One row per patient covering the full span of observed events. Computed in the
+  intermediate layer as MIN(event_date) to MAX(event_date) across every clinical
+  event table (encounters, conditions, medications, observations, procedures,
+  immunizations, allergies). The rule is intentionally simple: Synthea generates
+  continuous records per patient, so a single period per person is correct.
+
+sources:
+  - source_system: synthea
+    source_table: raw.synthea_patients
+    grain: one row per patient
+    fields:
+      - target: observation_period_id
+        rule: cast_int
+        from: _source_row
+
+      - target: person_id
+        rule: lookup
+        from: id
+        via: etl_meta.person_key_map
+
+      - target: observation_period_start_date
+        rule: copy
+        from: __derived_min_event_date__
+        notes: Computed in the intermediate layer, not from a source column.
+
+      - target: observation_period_end_date
+        rule: copy
+        from: __derived_max_event_date__
+        notes: Computed in the intermediate layer, not from a source column.
+
+      - target: period_type_concept_id
+        rule: constant
+        value: 44814724
+        label: Period covering healthcare encounters
+        notes: Verified against vocab.concept at build time.

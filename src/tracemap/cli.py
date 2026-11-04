@@ -16,6 +16,7 @@ from rich.table import Table
 from tracemap import synthea as synthea_runner
 from tracemap.config import get_settings
 from tracemap.db import connect
+from tracemap.generate import write_cdm_models, write_schema_tests
 from tracemap.load import ddl, raw, vocab
 from tracemap.spec import load_all_specs
 
@@ -224,6 +225,17 @@ def spec_check() -> None:
             f"  {name:<25} v{spec.spec_version:<6}  {fields:>3} fields  sources: {sources}"
         )
     console.print(f"{len(specs)} specs validated.")
+
+
+@app.command("generate")
+def generate() -> None:
+    """Regenerate every dbt CDM model and schema.yml from mapping_spec/*.yml."""
+    cdm_paths = write_cdm_models()
+    schema_path = write_schema_tests()
+    for p in cdm_paths:
+        console.print(f"  wrote {p.relative_to(ddl.DDL_FILE.parents[1])}")
+    console.print(f"  wrote {schema_path.relative_to(ddl.DDL_FILE.parents[1])}")
+    console.print(f"Generated {len(cdm_paths)} CDM models + schema.yml")
 
 
 if __name__ == "__main__":

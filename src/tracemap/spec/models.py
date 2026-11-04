@@ -167,6 +167,7 @@ class SourceMapping(_StrictModel):
     source_system: str
     source_table: str
     grain: str
+    where: str | None = None
     fields: list[FieldRule]
 
     @field_validator("fields")

@@ -1,0 +1,63 @@
+target_table: procedure_occurrence
+spec_version: 0.1.0
+description: >
+  One row per Synthea procedure record. Codes are SNOMED. Conditions and observations
+  may also route here when the standard concept lands in the Procedure domain
+  (domain routing, implemented in the intermediate layer).
+
+sources:
+  - source_system: synthea
+    source_table: raw.synthea_procedures
+    grain: one row per procedure record
+    fields:
+      - target: procedure_occurrence_id
+        rule: cast_int
+        from: _source_row
+
+      - target: person_id
+        rule: lookup
+        from: patient
+        via: etl_meta.person_key_map
+
+      - target: procedure_concept_id
+        rule: standard_concept_map
+        from: code
+        source_vocabulary: SNOMED
+        relationship: Maps to
+        on_unmapped: concept_id_0
+        domain_routing: true
+
+      - target: procedure_date
+        rule: cast_date
+        from: start
+
+      - target: procedure_datetime
+        rule: cast_datetime
+        from: start
+
+      - target: procedure_end_date
+        rule: cast_date
+        from: stop
+
+      - target: procedure_end_datetime
+        rule: cast_datetime
+        from: stop
+
+      - target: procedure_type_concept_id
+        rule: constant
+        value: 32817
+        label: EHR
+
+      - target: procedure_source_value
+        rule: copy
+        from: code
+
+      - target: procedure_source_concept_id
+        rule: source_concept_lookup
+        from: code
+        source_vocabulary: SNOMED
+
+      - target: visit_occurrence_id
+        rule: lookup
+        from: encounter
+        via: etl_meta.visit_source_key_map

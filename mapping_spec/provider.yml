@@ -1,0 +1,49 @@
+target_table: provider
+spec_version: 0.1.0
+description: >
+  One row per Synthea provider. Speciality is a free text in Synthea; a mapping to
+  Provider speciality concepts is out of scope for Phase 1.
+
+sources:
+  - source_system: synthea
+    source_table: raw.synthea_providers
+    grain: one row per provider
+    fields:
+      - target: provider_id
+        rule: lookup
+        from: id
+        via: etl_meta.provider_key_map
+
+      - target: provider_name
+        rule: copy
+        from: name
+
+      - target: gender_concept_id
+        rule: standard_concept_map
+        from: gender
+        source_vocabulary: Gender
+        relationship: Maps to
+        on_unmapped: concept_id_0
+
+      - target: specialty_concept_id
+        rule: constant
+        value: 0
+        label: No matching concept
+        notes: Synthea speciality strings are not mapped in Phase 1.
+
+      - target: care_site_id
+        rule: lookup
+        from: organization
+        via: etl_meta.care_site_key_map
+
+      - target: provider_source_value
+        rule: copy
+        from: id
+
+      - target: specialty_source_value
+        rule: copy
+        from: speciality
+
+      - target: gender_source_value
+        rule: copy
+        from: gender

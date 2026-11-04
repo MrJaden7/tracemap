@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Source CSVs loaded verbatim as text, plus _source_row and _run_id for lineage."
+    schema: raw
+    tables:
+      - name: synthea_patients
+      - name: synthea_encounters
+      - name: synthea_conditions
+      - name: synthea_medications
+      - name: synthea_observations
+      - name: synthea_procedures
+      - name: synthea_immunizations
+      - name: synthea_allergies
+      - name: synthea_organizations
+      - name: synthea_providers
+      - name: load_manifest
+
+  - name: vocab
+    description: "OMOP Standardized Vocabularies loaded from Athena."
+    schema: vocab
+    tables:
+      - name: concept
+      - name: concept_relationship
+      - name: concept_ancestor
+      - name: vocabulary
+      - name: domain
+
+  - name: etl_meta
+    description: "TraceMap run tracking and metadata tables."
+    schema: etl_meta
+    tables:
+      - name: cdm_run
+      - name: vocabulary_load

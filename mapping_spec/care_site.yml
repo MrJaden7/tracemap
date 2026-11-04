@@ -1,0 +1,38 @@
+target_table: care_site
+spec_version: 0.1.0
+description: >
+  One row per Synthea organization. The place_of_service_concept_id is left null in
+  Phase 1 because Synthea's organization records have no service type field; in Phase
+  2 this will be inferred from the encounter classes seen at each organization.
+
+sources:
+  - source_system: synthea
+    source_table: raw.synthea_organizations
+    grain: one row per organization
+    fields:
+      - target: care_site_id
+        rule: lookup
+        from: id
+        via: etl_meta.care_site_key_map
+
+      - target: care_site_name
+        rule: copy
+        from: name
+
+      - target: place_of_service_concept_id
+        rule: constant
+        value: 0
+        label: No matching concept
+
+      - target: location_id
+        rule: lookup
+        from: address
+        via: etl_meta.location_key_map
+
+      - target: care_site_source_value
+        rule: copy
+        from: id
+
+      - target: place_of_service_source_value
+        rule: constant
+        value: null

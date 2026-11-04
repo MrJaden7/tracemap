@@ -1,0 +1,67 @@
+target_table: drug_exposure
+spec_version: 0.1.0
+description: >
+  One row per Synthea medication record. Synthea codes drugs in RxNorm, which OMOP
+  treats as a standard vocabulary, so the standard concept mapping is effectively a
+  pass-through that only fills in the correct concept_id.
+
+sources:
+  - source_system: synthea
+    source_table: raw.synthea_medications
+    grain: one row per medication record
+    fields:
+      - target: drug_exposure_id
+        rule: cast_int
+        from: _source_row
+
+      - target: person_id
+        rule: lookup
+        from: patient
+        via: etl_meta.person_key_map
+
+      - target: drug_concept_id
+        rule: standard_concept_map
+        from: code
+        source_vocabulary: RxNorm
+        relationship: Maps to
+        on_unmapped: concept_id_0
+
+      - target: drug_exposure_start_date
+        rule: cast_date
+        from: start
+
+      - target: drug_exposure_start_datetime
+        rule: cast_datetime
+        from: start
+
+      - target: drug_exposure_end_date
+        rule: cast_date
+        from: stop
+
+      - target: drug_exposure_end_datetime
+        rule: cast_datetime
+        from: stop
+
+      - target: verbatim_end_date
+        rule: cast_date
+        from: stop
+
+      - target: drug_type_concept_id
+        rule: constant
+        value: 32817
+        label: EHR
+        notes: Synthea medications come from an EHR-style export.
+
+      - target: drug_source_value
+        rule: copy
+        from: code
+
+      - target: drug_source_concept_id
+        rule: source_concept_lookup
+        from: code
+        source_vocabulary: RxNorm
+
+      - target: visit_occurrence_id
+        rule: lookup
+        from: encounter
+        via: etl_meta.visit_source_key_map

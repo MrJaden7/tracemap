@@ -1,0 +1,15 @@
+# Read by dbt when DBT_PROFILES_DIR points at this folder (set by the CLI wrapper).
+# Values come from the same .env as the rest of TraceMap, keeping one source of truth.
+
+tracemap:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('TRACEMAP_DB_HOST', 'localhost') }}"
+      port: "{{ env_var('TRACEMAP_DB_PORT', '5440') | int }}"
+      user: "{{ env_var('TRACEMAP_DB_USER', 'tracemap') }}"
+      password: "{{ env_var('TRACEMAP_DB_PASSWORD', 'tracemap') }}"
+      dbname: "{{ env_var('TRACEMAP_DB_NAME', 'tracemap') }}"
+      schema: cdm
+      threads: 4
