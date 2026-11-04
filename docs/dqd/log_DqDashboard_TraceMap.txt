@@ -1,0 +1,11 @@
+2026-11-04 19:15:29	[Main thread]	INFO	readr	cli_block	 ── Column specification ──────────────────────────────────────────────────────── cols(   checkLevel = col_character(),   checkName = col_character(),   checkDescription = col_character(),   kahnContext = col_character(),   kahnCategory = col_character(),   kahnSubcategory = col_character(),   sqlFile = col_character(),   evaluationFilter = col_character(),   severity = col_character() ) 
+2026-11-04 19:15:29	[Main thread]	INFO	DataQualityDashboard	executeDqChecks	CDM Tables skipped: COHORT, COHORT_DEFINITION, VISIT_DETAIL, NOTE, NOTE_NLP, SPECIMEN, COST, PAYER_PLAN_PERIOD, EPISODE, EPISODE_EVENT, DEVICE_EXPOSURE, FACT_RELATIONSHIP, DOSE_ERA
+2026-11-04 19:15:29	[Main thread]	WARN	DataQualityDashboard	executeDqChecks	DEPRECATION WARNING - The plausibleDuringLife check has been reimplemented with the plausibleBeforeDeath check.
+2026-11-04 19:15:29	[Main thread]	WARN	DataQualityDashboard	executeDqChecks	DEPRECATION WARNING - The plausibleTemporalAfter check has been reimplemented with the plausibleAfterBirth and plausibleStartBeforeEnd checks.
+2026-11-04 19:15:29	[Main thread]	WARN	DataQualityDashboard	executeDqChecks	DEPRECATION WARNING - The plausibleGender check has been reimplemented with the plausibleGenderUseDescendants check.
+2026-11-04 19:15:29	[Main thread]	INFO	DatabaseConnector	connectPostgreSql	Connecting using PostgreSQL driver
+2026-11-04 19:15:29	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: cdmTable
+2026-11-04 19:18:25	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: measurePersonCompleteness
+2026-11-04 19:18:49	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: measureConditionEraCompleteness
+2026-11-04 19:18:49	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: measureObservationPeriodOverlap
+2026-11-04 19:18:50	[Main thread]	INFO	DataQualityDashboard	FUN	Processing check description: cdmField

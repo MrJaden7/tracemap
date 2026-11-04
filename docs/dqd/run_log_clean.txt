@@ -1,0 +1,23 @@
+Loading required package: DatabaseConnector
+Connecting using PostgreSQL driver
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  checkLevel = col_character(),
+  checkName = col_character(),
+  checkDescription = col_character(),
+  kahnContext = col_character(),
+  kahnCategory = col_character(),
+  kahnSubcategory = col_character(),
+  sqlFile = col_character(),
+  evaluationFilter = col_character(),
+  severity = col_character()
+)
+
+CDM Tables skipped: COHORT, COHORT_DEFINITION, VISIT_DETAIL, NOTE, NOTE_NLP, SPECIMEN, COST, PAYER_PLAN_PERIOD, EPISODE, EPISODE_EVENT, DEVICE_EXPOSURE, FACT_RELATIONSHIP, DOSE_ERA
+Connecting using PostgreSQL driver
+Processing check description: cdmTable
+Processing check description: measurePersonCompleteness
+Processing check description: measureConditionEraCompleteness
+Processing check description: measureObservationPeriodOverlap
+Processing check description: cdmField

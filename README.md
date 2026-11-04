@@ -84,7 +84,7 @@ flowchart LR
 | rerank_fallback_no_llm   | 82.2 % +/- 0.0 %     | 72.7 % +/- 0.0 %     | 94.3 % +/- 0.0 %     |   3.4 %             |
 | **llm_rerank_anthropic** | **89.0 % +/- 0.0 %** | **92.2 % +/- 0.0 %** | 80.6 % +/- 0.0 %     | **82.8 % +/- 0.0 %**|
 
-**Bootstrap 95% CI, LLM minus hybrid (n = 175):** top-1 accuracy +4.6% [-0.6%, +9.7%] (not significant), coverage -14.9% [-21.1%, -9.1%], correct abstention +13.1% [+8.6%, +18.3%]. The top-1 lift is directionally positive but not statistically significant at this sample size; the real, significant wins are precision (+19 points) and correct abstention (+79 points on the full unmappable framing).
+**Bootstrap 95% paired CIs (LLM minus hybrid, per-metric denominator):** top-1 accuracy +5.5% [+0.0%, +11.0%] on 146 mappable items (marginal - lower bound touches zero), precision +19.1% [+12.8%, +26.4%] on 175 items, coverage -14.9% [-21.1%, -9.1%] on 175 items, correct abstention +79.3% [+65.5%, +93.1%] on 29 unmappable items. The precision and abstention lifts are the statistically significant and defensible wins; the top-1 lift is marginal.
 
 Honesty notes: `rerank_fallback_no_llm` is a deterministic fallback used when no API key is set, not a baseline for the real LLM. Standard deviations are zero to three decimal places because every method is either deterministic by construction or (for the LLM) extremely consistent on this constrained JSON task; I did not increase precision to display flattering tiny stdev values. Full discussion and the [risk-coverage curve](docs/ai_mapping/risk_coverage.svg) in [docs/ai_mapping_evaluation.md](docs/ai_mapping_evaluation.md). Full audit in [docs/gap_audit.md](docs/gap_audit.md) and [docs/fact_sheet.md](docs/fact_sheet.md).
 

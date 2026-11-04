@@ -1,0 +1,1537 @@
+Loading required package: DatabaseConnector
+Running DQD with verbose=TRUE...
+Connecting using PostgreSQL driver
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  checkLevel = col_character(),
+  checkName = col_character(),
+  checkDescription = col_character(),
+  kahnContext = col_character(),
+  kahnCategory = col_character(),
+  kahnSubcategory = col_character(),
+  sqlFile = col_character(),
+  evaluationFilter = col_character(),
+  severity = col_character()
+)
+
+CDM Tables skipped: CONCEPT, VOCABULARY, CONCEPT_ANCESTOR, CONCEPT_RELATIONSHIP, CONCEPT_CLASS, CONCEPT_SYNONYM, RELATIONSHIP, DOMAIN, PACK_CONTENT, CONCEPT_METADATA, CONCEPT_RELATIONSHIP_METADATA
+2026-11-04 18:17:37	CDM Tables skipped: CONCEPT, VOCABULARY, CONCEPT_ANCESTOR, CONCEPT_RELATIONSHIP, CONCEPT_CLASS, CONCEPT_SYNONYM, RELATIONSHIP, DOMAIN, PACK_CONTENT, CONCEPT_METADATA, CONCEPT_RELATIONSHIP_METADATA
+Connecting using PostgreSQL driver
+Processing check description: cdmTable
+2026-11-04 18:17:37	Processing check description: cdmTable
+[Level: TABLE] [Check: cdmTable] [CDM Table: COHORT] [CDM Field: NA] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 434
+An error report has been created at  docs/dqd/errors/TABLE_cdmTable_COHORT_NA.txt
+2026-11-04 18:18:07	[Level: TABLE] [Check: cdmTable] [CDM Table: COHORT] [CDM Field: NA] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 434
+An error report has been created at  docs/dqd/errors/TABLE_cdmTable_COHORT_NA.txt
+[Level: TABLE] [Check: cdmTable] [CDM Table: COHORT_DEFINITION] [CDM Field: NA] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 434
+An error report has been created at  docs/dqd/errors/TABLE_cdmTable_COHORT_DEFINITION_NA.txt
+2026-11-04 18:18:07	[Level: TABLE] [Check: cdmTable] [CDM Table: COHORT_DEFINITION] [CDM Field: NA] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 434
+An error report has been created at  docs/dqd/errors/TABLE_cdmTable_COHORT_DEFINITION_NA.txt
+Processing check description: measurePersonCompleteness
+2026-11-04 18:18:08	Processing check description: measurePersonCompleteness
+Processing check description: measureConditionEraCompleteness
+2026-11-04 18:18:25	Processing check description: measureConditionEraCompleteness
+Processing check description: measureObservationPeriodOverlap
+2026-11-04 18:18:26	Processing check description: measureObservationPeriodOverlap
+Processing check description: cdmField
+2026-11-04 18:18:26	Processing check description: cdmField
+[Level: FIELD] [Check: cdmField] [CDM Table: COHORT] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 426
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_COHORT_DEFINITION_ID.txt
+2026-11-04 18:18:27	[Level: FIELD] [Check: cdmField] [CDM Table: COHORT] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 426
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_COHORT_DEFINITION_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: COHORT] [CDM Field: COHORT_END_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 421
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_COHORT_END_DATE.txt
+2026-11-04 18:18:28	[Level: FIELD] [Check: cdmField] [CDM Table: COHORT] [CDM Field: COHORT_END_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 421
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_COHORT_END_DATE.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: COHORT] [CDM Field: COHORT_START_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 423
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_COHORT_START_DATE.txt
+2026-11-04 18:18:28	[Level: FIELD] [Check: cdmField] [CDM Table: COHORT] [CDM Field: COHORT_START_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 423
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_COHORT_START_DATE.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: COHORT] [CDM Field: SUBJECT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 416
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_SUBJECT_ID.txt
+2026-11-04 18:18:28	[Level: FIELD] [Check: cdmField] [CDM Table: COHORT] [CDM Field: SUBJECT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 416
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_SUBJECT_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_DESCRIPTION] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 435
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_DEFINITION_COHORT_DEFINITION_DESCRIPTION.txt
+2026-11-04 18:18:28	[Level: FIELD] [Check: cdmField] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_DESCRIPTION] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 435
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_DEFINITION_COHORT_DEFINITION_DESCRIPTION.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 426
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_DEFINITION_COHORT_DEFINITION_ID.txt
+2026-11-04 18:18:28	[Level: FIELD] [Check: cdmField] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 426
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_DEFINITION_COHORT_DEFINITION_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_NAME] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 428
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_DEFINITION_COHORT_DEFINITION_NAME.txt
+2026-11-04 18:18:28	[Level: FIELD] [Check: cdmField] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_NAME] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 428
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_DEFINITION_COHORT_DEFINITION_NAME.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_SYNTAX] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 430
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_DEFINITION_COHORT_DEFINITION_SYNTAX.txt
+2026-11-04 18:18:28	[Level: FIELD] [Check: cdmField] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_SYNTAX] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 430
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_DEFINITION_COHORT_DEFINITION_SYNTAX.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_INITIATION_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 428
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_DEFINITION_COHORT_INITIATION_DATE.txt
+2026-11-04 18:18:28	[Level: FIELD] [Check: cdmField] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_INITIATION_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 428
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_DEFINITION_COHORT_INITIATION_DATE.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: COHORT_DEFINITION] [CDM Field: DEFINITION_TYPE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 432
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_DEFINITION_DEFINITION_TYPE_CONCEPT_ID.txt
+2026-11-04 18:18:28	[Level: FIELD] [Check: cdmField] [CDM Table: COHORT_DEFINITION] [CDM Field: DEFINITION_TYPE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 432
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_DEFINITION_DEFINITION_TYPE_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: COHORT_DEFINITION] [CDM Field: SUBJECT_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 424
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_DEFINITION_SUBJECT_CONCEPT_ID.txt
+2026-11-04 18:18:29	[Level: FIELD] [Check: cdmField] [CDM Table: COHORT_DEFINITION] [CDM Field: SUBJECT_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 424
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_COHORT_DEFINITION_SUBJECT_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "condition_status_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_CONDITION_OCCURRENCE_CONDITION_STATUS_CONCEPT_ID.txt
+2026-11-04 18:18:30	[Level: FIELD] [Check: cdmField] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "condition_status_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_CONDITION_OCCURRENCE_CONDITION_STATUS_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "condition_status_source_value" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_CONDITION_OCCURRENCE_CONDITION_STATUS_SOURCE_VALUE.txt
+2026-11-04 18:18:30	[Level: FIELD] [Check: cdmField] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "condition_status_source_value" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_CONDITION_OCCURRENCE_CONDITION_STATUS_SOURCE_VALUE.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "provider_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_CONDITION_OCCURRENCE_PROVIDER_ID.txt
+2026-11-04 18:18:30	[Level: FIELD] [Check: cdmField] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "provider_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_CONDITION_OCCURRENCE_PROVIDER_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: STOP_REASON] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "stop_reason" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_CONDITION_OCCURRENCE_STOP_REASON.txt
+2026-11-04 18:18:30	[Level: FIELD] [Check: cdmField] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: STOP_REASON] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "stop_reason" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_CONDITION_OCCURRENCE_STOP_REASON.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "visit_detail_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_CONDITION_OCCURRENCE_VISIT_DETAIL_ID.txt
+2026-11-04 18:18:30	[Level: FIELD] [Check: cdmField] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "visit_detail_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_CONDITION_OCCURRENCE_VISIT_DETAIL_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: DEATH] [CDM Field: CAUSE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "cause_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DEATH_CAUSE_CONCEPT_ID.txt
+2026-11-04 18:18:32	[Level: FIELD] [Check: cdmField] [CDM Table: DEATH] [CDM Field: CAUSE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "cause_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DEATH_CAUSE_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "cause_source_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DEATH_CAUSE_SOURCE_CONCEPT_ID.txt
+2026-11-04 18:18:32	[Level: FIELD] [Check: cdmField] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "cause_source_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DEATH_CAUSE_SOURCE_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "cause_source_value" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DEATH_CAUSE_SOURCE_VALUE.txt
+2026-11-04 18:18:32	[Level: FIELD] [Check: cdmField] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "cause_source_value" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DEATH_CAUSE_SOURCE_VALUE.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: DAYS_SUPPLY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "days_supply" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_DAYS_SUPPLY.txt
+2026-11-04 18:18:34	[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: DAYS_SUPPLY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "days_supply" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_DAYS_SUPPLY.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: DOSE_UNIT_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "dose_unit_source_value" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_DOSE_UNIT_SOURCE_VALUE.txt
+2026-11-04 18:18:34	[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: DOSE_UNIT_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "dose_unit_source_value" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_DOSE_UNIT_SOURCE_VALUE.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: LOT_NUMBER] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "lot_number" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_LOT_NUMBER.txt
+2026-11-04 18:18:37	[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: LOT_NUMBER] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "lot_number" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_LOT_NUMBER.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "provider_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_PROVIDER_ID.txt
+2026-11-04 18:18:37	[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "provider_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_PROVIDER_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: QUANTITY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "quantity" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_QUANTITY.txt
+2026-11-04 18:18:37	[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: QUANTITY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "quantity" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_QUANTITY.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: REFILLS] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "refills" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_REFILLS.txt
+2026-11-04 18:18:38	[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: REFILLS] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "refills" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_REFILLS.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "route_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_ROUTE_CONCEPT_ID.txt
+2026-11-04 18:18:38	[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "route_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_ROUTE_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "route_source_value" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_ROUTE_SOURCE_VALUE.txt
+2026-11-04 18:18:38	[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "route_source_value" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_ROUTE_SOURCE_VALUE.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: SIG] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "sig" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_SIG.txt
+2026-11-04 18:18:38	[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: SIG] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "sig" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_SIG.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: STOP_REASON] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "stop_reason" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_STOP_REASON.txt
+2026-11-04 18:18:38	[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: STOP_REASON] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "stop_reason" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_STOP_REASON.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "visit_detail_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_VISIT_DETAIL_ID.txt
+2026-11-04 18:18:38	[Level: FIELD] [Check: cdmField] [CDM Table: DRUG_EXPOSURE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "visit_detail_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_DRUG_EXPOSURE_VISIT_DETAIL_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "modifier_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROCEDURE_OCCURRENCE_MODIFIER_CONCEPT_ID.txt
+2026-11-04 18:19:22	[Level: FIELD] [Check: cdmField] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "modifier_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROCEDURE_OCCURRENCE_MODIFIER_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "modifier_source_value" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROCEDURE_OCCURRENCE_MODIFIER_SOURCE_VALUE.txt
+2026-11-04 18:19:22	[Level: FIELD] [Check: cdmField] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "modifier_source_value" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROCEDURE_OCCURRENCE_MODIFIER_SOURCE_VALUE.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "provider_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROCEDURE_OCCURRENCE_PROVIDER_ID.txt
+2026-11-04 18:19:26	[Level: FIELD] [Check: cdmField] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "provider_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROCEDURE_OCCURRENCE_PROVIDER_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: QUANTITY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "quantity" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROCEDURE_OCCURRENCE_QUANTITY.txt
+2026-11-04 18:19:26	[Level: FIELD] [Check: cdmField] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: QUANTITY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "quantity" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROCEDURE_OCCURRENCE_QUANTITY.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "visit_detail_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROCEDURE_OCCURRENCE_VISIT_DETAIL_ID.txt
+2026-11-04 18:19:26	[Level: FIELD] [Check: cdmField] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "visit_detail_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROCEDURE_OCCURRENCE_VISIT_DETAIL_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: PROVIDER] [CDM Field: DEA] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "dea" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROVIDER_DEA.txt
+2026-11-04 18:19:26	[Level: FIELD] [Check: cdmField] [CDM Table: PROVIDER] [CDM Field: DEA] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "dea" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROVIDER_DEA.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: PROVIDER] [CDM Field: GENDER_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "gender_source_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROVIDER_GENDER_SOURCE_CONCEPT_ID.txt
+2026-11-04 18:19:26	[Level: FIELD] [Check: cdmField] [CDM Table: PROVIDER] [CDM Field: GENDER_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "gender_source_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROVIDER_GENDER_SOURCE_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: PROVIDER] [CDM Field: NPI] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "npi" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROVIDER_NPI.txt
+2026-11-04 18:19:26	[Level: FIELD] [Check: cdmField] [CDM Table: PROVIDER] [CDM Field: NPI] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "npi" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROVIDER_NPI.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: PROVIDER] [CDM Field: SPECIALTY_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "specialty_source_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROVIDER_SPECIALTY_SOURCE_CONCEPT_ID.txt
+2026-11-04 18:19:27	[Level: FIELD] [Check: cdmField] [CDM Table: PROVIDER] [CDM Field: SPECIALTY_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "specialty_source_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROVIDER_SPECIALTY_SOURCE_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: PROVIDER] [CDM Field: YEAR_OF_BIRTH] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "year_of_birth" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROVIDER_YEAR_OF_BIRTH.txt
+2026-11-04 18:19:27	[Level: FIELD] [Check: cdmField] [CDM Table: PROVIDER] [CDM Field: YEAR_OF_BIRTH] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "year_of_birth" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_PROVIDER_YEAR_OF_BIRTH.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "admitted_from_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_VISIT_OCCURRENCE_ADMITTED_FROM_CONCEPT_ID.txt
+2026-11-04 18:19:29	[Level: FIELD] [Check: cdmField] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "admitted_from_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_VISIT_OCCURRENCE_ADMITTED_FROM_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "admitted_from_source_value" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_VISIT_OCCURRENCE_ADMITTED_FROM_SOURCE_VALUE.txt
+2026-11-04 18:19:30	[Level: FIELD] [Check: cdmField] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "admitted_from_source_value" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_VISIT_OCCURRENCE_ADMITTED_FROM_SOURCE_VALUE.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "discharged_to_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_VISIT_OCCURRENCE_DISCHARGED_TO_CONCEPT_ID.txt
+2026-11-04 18:19:30	[Level: FIELD] [Check: cdmField] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "discharged_to_concept_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_VISIT_OCCURRENCE_DISCHARGED_TO_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "discharged_to_source_value" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_VISIT_OCCURRENCE_DISCHARGED_TO_SOURCE_VALUE.txt
+2026-11-04 18:19:31	[Level: FIELD] [Check: cdmField] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "discharged_to_source_value" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_VISIT_OCCURRENCE_DISCHARGED_TO_SOURCE_VALUE.txt
+[Level: FIELD] [Check: cdmField] [CDM Table: VISIT_OCCURRENCE] [CDM Field: PRECEDING_VISIT_OCCURRENCE_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "preceding_visit_occurrence_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_VISIT_OCCURRENCE_PRECEDING_VISIT_OCCURRENCE_ID.txt
+2026-11-04 18:19:31	[Level: FIELD] [Check: cdmField] [CDM Table: VISIT_OCCURRENCE] [CDM Field: PRECEDING_VISIT_OCCURRENCE_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column "preceding_visit_occurrence_id" does not exist
+  Position: 320
+An error report has been created at  docs/dqd/errors/FIELD_cdmField_VISIT_OCCURRENCE_PRECEDING_VISIT_OCCURRENCE_ID.txt
+Processing check description: isRequired
+2026-11-04 18:19:32	Processing check description: isRequired
+[Level: FIELD] [Check: isRequired] [CDM Table: COHORT] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 467
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_COHORT_DEFINITION_ID.txt
+2026-11-04 18:19:33	[Level: FIELD] [Check: isRequired] [CDM Table: COHORT] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 467
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_COHORT_DEFINITION_ID.txt
+[Level: FIELD] [Check: isRequired] [CDM Table: COHORT] [CDM Field: COHORT_END_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 462
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_COHORT_END_DATE.txt
+2026-11-04 18:19:33	[Level: FIELD] [Check: isRequired] [CDM Table: COHORT] [CDM Field: COHORT_END_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 462
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_COHORT_END_DATE.txt
+[Level: FIELD] [Check: isRequired] [CDM Table: COHORT] [CDM Field: COHORT_START_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 464
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_COHORT_START_DATE.txt
+2026-11-04 18:19:33	[Level: FIELD] [Check: isRequired] [CDM Table: COHORT] [CDM Field: COHORT_START_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 464
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_COHORT_START_DATE.txt
+[Level: FIELD] [Check: isRequired] [CDM Table: COHORT] [CDM Field: SUBJECT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 457
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_SUBJECT_ID.txt
+2026-11-04 18:19:33	[Level: FIELD] [Check: isRequired] [CDM Table: COHORT] [CDM Field: SUBJECT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 457
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_SUBJECT_ID.txt
+[Level: FIELD] [Check: isRequired] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 478
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_DEFINITION_COHORT_DEFINITION_ID.txt
+2026-11-04 18:19:33	[Level: FIELD] [Check: isRequired] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 478
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_DEFINITION_COHORT_DEFINITION_ID.txt
+[Level: FIELD] [Check: isRequired] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_NAME] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 480
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_DEFINITION_COHORT_DEFINITION_NAME.txt
+2026-11-04 18:19:33	[Level: FIELD] [Check: isRequired] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_NAME] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 480
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_DEFINITION_COHORT_DEFINITION_NAME.txt
+[Level: FIELD] [Check: isRequired] [CDM Table: COHORT_DEFINITION] [CDM Field: DEFINITION_TYPE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 484
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_DEFINITION_DEFINITION_TYPE_CONCEPT_ID.txt
+2026-11-04 18:19:33	[Level: FIELD] [Check: isRequired] [CDM Table: COHORT_DEFINITION] [CDM Field: DEFINITION_TYPE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 484
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_DEFINITION_DEFINITION_TYPE_CONCEPT_ID.txt
+[Level: FIELD] [Check: isRequired] [CDM Table: COHORT_DEFINITION] [CDM Field: SUBJECT_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 476
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_DEFINITION_SUBJECT_CONCEPT_ID.txt
+2026-11-04 18:19:33	[Level: FIELD] [Check: isRequired] [CDM Table: COHORT_DEFINITION] [CDM Field: SUBJECT_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 476
+An error report has been created at  docs/dqd/errors/FIELD_isRequired_COHORT_DEFINITION_SUBJECT_CONCEPT_ID.txt
+Processing check description: cdmDatatype
+2026-11-04 18:20:17	Processing check description: cdmDatatype
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: COHORT] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 397
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_COHORT_COHORT_DEFINITION_ID.txt
+2026-11-04 18:20:18	[Level: FIELD] [Check: cdmDatatype] [CDM Table: COHORT] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 397
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_COHORT_COHORT_DEFINITION_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: COHORT] [CDM Field: SUBJECT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 387
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_COHORT_SUBJECT_ID.txt
+2026-11-04 18:20:18	[Level: FIELD] [Check: cdmDatatype] [CDM Table: COHORT] [CDM Field: SUBJECT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 387
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_COHORT_SUBJECT_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 408
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_COHORT_DEFINITION_COHORT_DEFINITION_ID.txt
+2026-11-04 18:20:18	[Level: FIELD] [Check: cdmDatatype] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 408
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_COHORT_DEFINITION_COHORT_DEFINITION_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: COHORT_DEFINITION] [CDM Field: DEFINITION_TYPE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 414
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_COHORT_DEFINITION_DEFINITION_TYPE_CONCEPT_ID.txt
+2026-11-04 18:20:18	[Level: FIELD] [Check: cdmDatatype] [CDM Table: COHORT_DEFINITION] [CDM Field: DEFINITION_TYPE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 414
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_COHORT_DEFINITION_DEFINITION_TYPE_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: COHORT_DEFINITION] [CDM Field: SUBJECT_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 406
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_COHORT_DEFINITION_SUBJECT_CONCEPT_ID.txt
+2026-11-04 18:20:18	[Level: FIELD] [Check: cdmDatatype] [CDM Table: COHORT_DEFINITION] [CDM Field: SUBJECT_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 406
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_COHORT_DEFINITION_SUBJECT_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_concept_id does not exist
+  Position: 481
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_CONDITION_OCCURRENCE_CONDITION_STATUS_CONCEPT_ID.txt
+2026-11-04 18:20:23	[Level: FIELD] [Check: cdmDatatype] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_concept_id does not exist
+  Position: 481
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_CONDITION_OCCURRENCE_CONDITION_STATUS_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Position: 465
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_CONDITION_OCCURRENCE_PROVIDER_ID.txt
+2026-11-04 18:20:24	[Level: FIELD] [Check: cdmDatatype] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Position: 465
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_CONDITION_OCCURRENCE_PROVIDER_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Position: 469
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_CONDITION_OCCURRENCE_VISIT_DETAIL_ID.txt
+2026-11-04 18:20:24	[Level: FIELD] [Check: cdmDatatype] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Position: 469
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_CONDITION_OCCURRENCE_VISIT_DETAIL_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: DEATH] [CDM Field: CAUSE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_concept_id does not exist
+  Position: 440
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_DEATH_CAUSE_CONCEPT_ID.txt
+2026-11-04 18:20:25	[Level: FIELD] [Check: cdmDatatype] [CDM Table: DEATH] [CDM Field: CAUSE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_concept_id does not exist
+  Position: 440
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_DEATH_CAUSE_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_source_concept_id does not exist
+  Position: 447
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_DEATH_CAUSE_SOURCE_CONCEPT_ID.txt
+2026-11-04 18:20:25	[Level: FIELD] [Check: cdmDatatype] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_source_concept_id does not exist
+  Position: 447
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_DEATH_CAUSE_SOURCE_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: DRUG_EXPOSURE] [CDM Field: DAYS_SUPPLY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.days_supply does not exist
+  Position: 451
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_DRUG_EXPOSURE_DAYS_SUPPLY.txt
+2026-11-04 18:20:27	[Level: FIELD] [Check: cdmDatatype] [CDM Table: DRUG_EXPOSURE] [CDM Field: DAYS_SUPPLY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.days_supply does not exist
+  Position: 451
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_DRUG_EXPOSURE_DAYS_SUPPLY.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: DRUG_EXPOSURE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Position: 451
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_DRUG_EXPOSURE_PROVIDER_ID.txt
+2026-11-04 18:20:31	[Level: FIELD] [Check: cdmDatatype] [CDM Table: DRUG_EXPOSURE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Position: 451
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_DRUG_EXPOSURE_PROVIDER_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: DRUG_EXPOSURE] [CDM Field: REFILLS] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.refills does not exist
+  Position: 447
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_DRUG_EXPOSURE_REFILLS.txt
+2026-11-04 18:20:31	[Level: FIELD] [Check: cdmDatatype] [CDM Table: DRUG_EXPOSURE] [CDM Field: REFILLS] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.refills does not exist
+  Position: 447
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_DRUG_EXPOSURE_REFILLS.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_concept_id does not exist
+  Position: 456
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_DRUG_EXPOSURE_ROUTE_CONCEPT_ID.txt
+2026-11-04 18:20:31	[Level: FIELD] [Check: cdmDatatype] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_concept_id does not exist
+  Position: 456
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_DRUG_EXPOSURE_ROUTE_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: DRUG_EXPOSURE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Position: 455
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_DRUG_EXPOSURE_VISIT_DETAIL_ID.txt
+2026-11-04 18:20:31	[Level: FIELD] [Check: cdmDatatype] [CDM Table: DRUG_EXPOSURE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Position: 455
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_DRUG_EXPOSURE_VISIT_DETAIL_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.modifier_concept_id does not exist
+  Position: 473
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_PROCEDURE_OCCURRENCE_MODIFIER_CONCEPT_ID.txt
+2026-11-04 18:22:23	[Level: FIELD] [Check: cdmDatatype] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.modifier_concept_id does not exist
+  Position: 473
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_PROCEDURE_OCCURRENCE_MODIFIER_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Position: 465
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_PROCEDURE_OCCURRENCE_PROVIDER_ID.txt
+2026-11-04 18:22:33	[Level: FIELD] [Check: cdmDatatype] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Position: 465
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_PROCEDURE_OCCURRENCE_PROVIDER_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: QUANTITY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.quantity does not exist
+  Position: 462
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_PROCEDURE_OCCURRENCE_QUANTITY.txt
+2026-11-04 18:22:34	[Level: FIELD] [Check: cdmDatatype] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: QUANTITY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.quantity does not exist
+  Position: 462
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_PROCEDURE_OCCURRENCE_QUANTITY.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Position: 469
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_PROCEDURE_OCCURRENCE_VISIT_DETAIL_ID.txt
+2026-11-04 18:22:34	[Level: FIELD] [Check: cdmDatatype] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Position: 469
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_PROCEDURE_OCCURRENCE_VISIT_DETAIL_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: PROVIDER] [CDM Field: GENDER_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.gender_source_concept_id does not exist
+  Position: 454
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_PROVIDER_GENDER_SOURCE_CONCEPT_ID.txt
+2026-11-04 18:22:35	[Level: FIELD] [Check: cdmDatatype] [CDM Table: PROVIDER] [CDM Field: GENDER_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.gender_source_concept_id does not exist
+  Position: 454
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_PROVIDER_GENDER_SOURCE_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: PROVIDER] [CDM Field: SPECIALTY_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.specialty_source_concept_id does not exist
+  Position: 457
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_PROVIDER_SPECIALTY_SOURCE_CONCEPT_ID.txt
+2026-11-04 18:22:36	[Level: FIELD] [Check: cdmDatatype] [CDM Table: PROVIDER] [CDM Field: SPECIALTY_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.specialty_source_concept_id does not exist
+  Position: 457
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_PROVIDER_SPECIALTY_SOURCE_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: PROVIDER] [CDM Field: YEAR_OF_BIRTH] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.year_of_birth does not exist
+  Position: 443
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_PROVIDER_YEAR_OF_BIRTH.txt
+2026-11-04 18:22:36	[Level: FIELD] [Check: cdmDatatype] [CDM Table: PROVIDER] [CDM Field: YEAR_OF_BIRTH] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.year_of_birth does not exist
+  Position: 443
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_PROVIDER_YEAR_OF_BIRTH.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_concept_id does not exist
+  Position: 470
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_VISIT_OCCURRENCE_ADMITTED_FROM_CONCEPT_ID.txt
+2026-11-04 18:22:37	[Level: FIELD] [Check: cdmDatatype] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_concept_id does not exist
+  Position: 470
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_VISIT_OCCURRENCE_ADMITTED_FROM_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_concept_id does not exist
+  Position: 470
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_VISIT_OCCURRENCE_DISCHARGED_TO_CONCEPT_ID.txt
+2026-11-04 18:22:39	[Level: FIELD] [Check: cdmDatatype] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_concept_id does not exist
+  Position: 470
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_VISIT_OCCURRENCE_DISCHARGED_TO_CONCEPT_ID.txt
+[Level: FIELD] [Check: cdmDatatype] [CDM Table: VISIT_OCCURRENCE] [CDM Field: PRECEDING_VISIT_OCCURRENCE_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.preceding_visit_occurrence_id does not exist
+  Position: 475
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_VISIT_OCCURRENCE_PRECEDING_VISIT_OCCURRENCE_ID.txt
+2026-11-04 18:22:39	[Level: FIELD] [Check: cdmDatatype] [CDM Table: VISIT_OCCURRENCE] [CDM Field: PRECEDING_VISIT_OCCURRENCE_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.preceding_visit_occurrence_id does not exist
+  Position: 475
+An error report has been created at  docs/dqd/errors/FIELD_cdmDatatype_VISIT_OCCURRENCE_PRECEDING_VISIT_OCCURRENCE_ID.txt
+Processing check description: isPrimaryKey
+2026-11-04 18:22:43	Processing check description: isPrimaryKey
+Processing check description: isForeignKey
+2026-11-04 18:23:20	Processing check description: isForeignKey
+[Level: FIELD] [Check: isForeignKey] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 469
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_COHORT_DEFINITION_COHORT_DEFINITION_ID.txt
+2026-11-04 18:23:21	[Level: FIELD] [Check: isForeignKey] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 469
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_COHORT_DEFINITION_COHORT_DEFINITION_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: COHORT_DEFINITION] [CDM Field: DEFINITION_TYPE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 475
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_COHORT_DEFINITION_DEFINITION_TYPE_CONCEPT_ID.txt
+2026-11-04 18:23:21	[Level: FIELD] [Check: isForeignKey] [CDM Table: COHORT_DEFINITION] [CDM Field: DEFINITION_TYPE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 475
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_COHORT_DEFINITION_DEFINITION_TYPE_CONCEPT_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: COHORT_DEFINITION] [CDM Field: SUBJECT_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 467
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_COHORT_DEFINITION_SUBJECT_CONCEPT_ID.txt
+2026-11-04 18:23:21	[Level: FIELD] [Check: isForeignKey] [CDM Table: COHORT_DEFINITION] [CDM Field: SUBJECT_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 467
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_COHORT_DEFINITION_SUBJECT_CONCEPT_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_concept_id does not exist
+  Position: 593
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_CONDITION_OCCURRENCE_CONDITION_STATUS_CONCEPT_ID.txt
+2026-11-04 18:23:23	[Level: FIELD] [Check: isForeignKey] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_concept_id does not exist
+  Position: 593
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_CONDITION_OCCURRENCE_CONDITION_STATUS_CONCEPT_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Hint: Perhaps you meant to reference the column "fktable.provider_id".
+  Position: 577
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_CONDITION_OCCURRENCE_PROVIDER_ID.txt
+2026-11-04 18:23:24	[Level: FIELD] [Check: isForeignKey] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Hint: Perhaps you meant to reference the column "fktable.provider_id".
+  Position: 577
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_CONDITION_OCCURRENCE_PROVIDER_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Hint: Perhaps you meant to reference the column "fktable.visit_detail_id".
+  Position: 585
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_CONDITION_OCCURRENCE_VISIT_DETAIL_ID.txt
+2026-11-04 18:23:24	[Level: FIELD] [Check: isForeignKey] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Hint: Perhaps you meant to reference the column "fktable.visit_detail_id".
+  Position: 585
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_CONDITION_OCCURRENCE_VISIT_DETAIL_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: DEATH] [CDM Field: CAUSE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_concept_id does not exist
+  Position: 552
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_DEATH_CAUSE_CONCEPT_ID.txt
+2026-11-04 18:23:24	[Level: FIELD] [Check: isForeignKey] [CDM Table: DEATH] [CDM Field: CAUSE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_concept_id does not exist
+  Position: 552
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_DEATH_CAUSE_CONCEPT_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_source_concept_id does not exist
+  Position: 559
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_DEATH_CAUSE_SOURCE_CONCEPT_ID.txt
+2026-11-04 18:23:25	[Level: FIELD] [Check: isForeignKey] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_source_concept_id does not exist
+  Position: 559
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_DEATH_CAUSE_SOURCE_CONCEPT_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: DRUG_EXPOSURE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Hint: Perhaps you meant to reference the column "fktable.provider_id".
+  Position: 563
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_DRUG_EXPOSURE_PROVIDER_ID.txt
+2026-11-04 18:23:28	[Level: FIELD] [Check: isForeignKey] [CDM Table: DRUG_EXPOSURE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Hint: Perhaps you meant to reference the column "fktable.provider_id".
+  Position: 563
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_DRUG_EXPOSURE_PROVIDER_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_concept_id does not exist
+  Position: 568
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_DRUG_EXPOSURE_ROUTE_CONCEPT_ID.txt
+2026-11-04 18:23:28	[Level: FIELD] [Check: isForeignKey] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_concept_id does not exist
+  Position: 568
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_DRUG_EXPOSURE_ROUTE_CONCEPT_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: DRUG_EXPOSURE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Hint: Perhaps you meant to reference the column "fktable.visit_detail_id".
+  Position: 571
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_DRUG_EXPOSURE_VISIT_DETAIL_ID.txt
+2026-11-04 18:23:29	[Level: FIELD] [Check: isForeignKey] [CDM Table: DRUG_EXPOSURE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Hint: Perhaps you meant to reference the column "fktable.visit_detail_id".
+  Position: 571
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_DRUG_EXPOSURE_VISIT_DETAIL_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.modifier_concept_id does not exist
+  Position: 585
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_PROCEDURE_OCCURRENCE_MODIFIER_CONCEPT_ID.txt
+2026-11-04 18:27:01	[Level: FIELD] [Check: isForeignKey] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.modifier_concept_id does not exist
+  Position: 585
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_PROCEDURE_OCCURRENCE_MODIFIER_CONCEPT_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Hint: Perhaps you meant to reference the column "fktable.provider_id".
+  Position: 577
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_PROCEDURE_OCCURRENCE_PROVIDER_ID.txt
+2026-11-04 18:27:09	[Level: FIELD] [Check: isForeignKey] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Hint: Perhaps you meant to reference the column "fktable.provider_id".
+  Position: 577
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_PROCEDURE_OCCURRENCE_PROVIDER_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Hint: Perhaps you meant to reference the column "fktable.visit_detail_id".
+  Position: 585
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_PROCEDURE_OCCURRENCE_VISIT_DETAIL_ID.txt
+2026-11-04 18:27:10	[Level: FIELD] [Check: isForeignKey] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Hint: Perhaps you meant to reference the column "fktable.visit_detail_id".
+  Position: 585
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_PROCEDURE_OCCURRENCE_VISIT_DETAIL_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: PROVIDER] [CDM Field: GENDER_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.gender_source_concept_id does not exist
+  Position: 566
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_PROVIDER_GENDER_SOURCE_CONCEPT_ID.txt
+2026-11-04 18:27:12	[Level: FIELD] [Check: isForeignKey] [CDM Table: PROVIDER] [CDM Field: GENDER_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.gender_source_concept_id does not exist
+  Position: 566
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_PROVIDER_GENDER_SOURCE_CONCEPT_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: PROVIDER] [CDM Field: SPECIALTY_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.specialty_source_concept_id does not exist
+  Position: 569
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_PROVIDER_SPECIALTY_SOURCE_CONCEPT_ID.txt
+2026-11-04 18:27:13	[Level: FIELD] [Check: isForeignKey] [CDM Table: PROVIDER] [CDM Field: SPECIALTY_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.specialty_source_concept_id does not exist
+  Position: 569
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_PROVIDER_SPECIALTY_SOURCE_CONCEPT_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_concept_id does not exist
+  Position: 582
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_VISIT_OCCURRENCE_ADMITTED_FROM_CONCEPT_ID.txt
+2026-11-04 18:27:14	[Level: FIELD] [Check: isForeignKey] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_concept_id does not exist
+  Position: 582
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_VISIT_OCCURRENCE_ADMITTED_FROM_CONCEPT_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_concept_id does not exist
+  Position: 582
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_VISIT_OCCURRENCE_DISCHARGED_TO_CONCEPT_ID.txt
+2026-11-04 18:27:15	[Level: FIELD] [Check: isForeignKey] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_concept_id does not exist
+  Position: 582
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_VISIT_OCCURRENCE_DISCHARGED_TO_CONCEPT_ID.txt
+[Level: FIELD] [Check: isForeignKey] [CDM Table: VISIT_OCCURRENCE] [CDM Field: PRECEDING_VISIT_OCCURRENCE_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.preceding_visit_occurrence_id does not exist
+  Position: 595
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_VISIT_OCCURRENCE_PRECEDING_VISIT_OCCURRENCE_ID.txt
+2026-11-04 18:27:15	[Level: FIELD] [Check: isForeignKey] [CDM Table: VISIT_OCCURRENCE] [CDM Field: PRECEDING_VISIT_OCCURRENCE_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.preceding_visit_occurrence_id does not exist
+  Position: 595
+An error report has been created at  docs/dqd/errors/FIELD_isForeignKey_VISIT_OCCURRENCE_PRECEDING_VISIT_OCCURRENCE_ID.txt
+Processing check description: fkDomain
+2026-11-04 18:27:16	Processing check description: fkDomain
+[Level: FIELD] [Check: fkDomain] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_concept_id does not exist
+  Position: 576
+An error report has been created at  docs/dqd/errors/FIELD_fkDomain_CONDITION_OCCURRENCE_CONDITION_STATUS_CONCEPT_ID.txt
+2026-11-04 18:27:19	[Level: FIELD] [Check: fkDomain] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_concept_id does not exist
+  Position: 576
+An error report has been created at  docs/dqd/errors/FIELD_fkDomain_CONDITION_OCCURRENCE_CONDITION_STATUS_CONCEPT_ID.txt
+[Level: FIELD] [Check: fkDomain] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_concept_id does not exist
+  Position: 551
+An error report has been created at  docs/dqd/errors/FIELD_fkDomain_DRUG_EXPOSURE_ROUTE_CONCEPT_ID.txt
+2026-11-04 18:27:22	[Level: FIELD] [Check: fkDomain] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_concept_id does not exist
+  Position: 551
+An error report has been created at  docs/dqd/errors/FIELD_fkDomain_DRUG_EXPOSURE_ROUTE_CONCEPT_ID.txt
+[Level: FIELD] [Check: fkDomain] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_concept_id does not exist
+  Position: 565
+An error report has been created at  docs/dqd/errors/FIELD_fkDomain_VISIT_OCCURRENCE_ADMITTED_FROM_CONCEPT_ID.txt
+2026-11-04 18:30:39	[Level: FIELD] [Check: fkDomain] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_concept_id does not exist
+  Position: 565
+An error report has been created at  docs/dqd/errors/FIELD_fkDomain_VISIT_OCCURRENCE_ADMITTED_FROM_CONCEPT_ID.txt
+[Level: FIELD] [Check: fkDomain] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_concept_id does not exist
+  Position: 565
+An error report has been created at  docs/dqd/errors/FIELD_fkDomain_VISIT_OCCURRENCE_DISCHARGED_TO_CONCEPT_ID.txt
+2026-11-04 18:30:39	[Level: FIELD] [Check: fkDomain] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_concept_id does not exist
+  Position: 565
+An error report has been created at  docs/dqd/errors/FIELD_fkDomain_VISIT_OCCURRENCE_DISCHARGED_TO_CONCEPT_ID.txt
+Processing check description: fkClass
+2026-11-04 18:30:42	Processing check description: fkClass
+Processing check description: isStandardValidConcept
+2026-11-04 18:30:49	Processing check description: isStandardValidConcept
+[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: COHORT_DEFINITION] [CDM Field: DEFINITION_TYPE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 417
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_COHORT_DEFINITION_DEFINITION_TYPE_CONCEPT_ID.txt
+2026-11-04 18:30:50	[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: COHORT_DEFINITION] [CDM Field: DEFINITION_TYPE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 417
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_COHORT_DEFINITION_DEFINITION_TYPE_CONCEPT_ID.txt
+[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: COHORT_DEFINITION] [CDM Field: SUBJECT_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 409
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_COHORT_DEFINITION_SUBJECT_CONCEPT_ID.txt
+2026-11-04 18:30:50	[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: COHORT_DEFINITION] [CDM Field: SUBJECT_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 409
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_COHORT_DEFINITION_SUBJECT_CONCEPT_ID.txt
+[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_concept_id does not exist
+  Position: 493
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_CONDITION_OCCURRENCE_CONDITION_STATUS_CONCEPT_ID.txt
+2026-11-04 18:30:53	[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_concept_id does not exist
+  Position: 493
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_CONDITION_OCCURRENCE_CONDITION_STATUS_CONCEPT_ID.txt
+[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: DEATH] [CDM Field: CAUSE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_concept_id does not exist
+  Position: 452
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_DEATH_CAUSE_CONCEPT_ID.txt
+2026-11-04 18:30:54	[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: DEATH] [CDM Field: CAUSE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_concept_id does not exist
+  Position: 452
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_DEATH_CAUSE_CONCEPT_ID.txt
+[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_concept_id does not exist
+  Position: 468
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_DRUG_EXPOSURE_ROUTE_CONCEPT_ID.txt
+2026-11-04 18:30:58	[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_concept_id does not exist
+  Position: 468
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_DRUG_EXPOSURE_ROUTE_CONCEPT_ID.txt
+[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.modifier_concept_id does not exist
+  Position: 485
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_PROCEDURE_OCCURRENCE_MODIFIER_CONCEPT_ID.txt
+2026-11-04 18:34:57	[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.modifier_concept_id does not exist
+  Position: 485
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_PROCEDURE_OCCURRENCE_MODIFIER_CONCEPT_ID.txt
+[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_concept_id does not exist
+  Position: 482
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_VISIT_OCCURRENCE_ADMITTED_FROM_CONCEPT_ID.txt
+2026-11-04 18:35:02	[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_concept_id does not exist
+  Position: 482
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_VISIT_OCCURRENCE_ADMITTED_FROM_CONCEPT_ID.txt
+[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_concept_id does not exist
+  Position: 482
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_VISIT_OCCURRENCE_DISCHARGED_TO_CONCEPT_ID.txt
+2026-11-04 18:35:02	[Level: FIELD] [Check: isStandardValidConcept] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_concept_id does not exist
+  Position: 482
+An error report has been created at  docs/dqd/errors/FIELD_isStandardValidConcept_VISIT_OCCURRENCE_DISCHARGED_TO_CONCEPT_ID.txt
+Processing check description: measureValueCompleteness
+2026-11-04 18:35:04	Processing check description: measureValueCompleteness
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 400
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_COHORT_DEFINITION_ID.txt
+2026-11-04 18:35:06	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 400
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_COHORT_DEFINITION_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT] [CDM Field: COHORT_END_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 395
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_COHORT_END_DATE.txt
+2026-11-04 18:35:06	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT] [CDM Field: COHORT_END_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 395
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_COHORT_END_DATE.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT] [CDM Field: COHORT_START_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 397
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_COHORT_START_DATE.txt
+2026-11-04 18:35:06	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT] [CDM Field: COHORT_START_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 397
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_COHORT_START_DATE.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT] [CDM Field: SUBJECT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 390
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_SUBJECT_ID.txt
+2026-11-04 18:35:06	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT] [CDM Field: SUBJECT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 390
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_SUBJECT_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_DESCRIPTION] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 420
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_DEFINITION_COHORT_DEFINITION_DESCRIPTION.txt
+2026-11-04 18:35:06	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_DESCRIPTION] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 420
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_DEFINITION_COHORT_DEFINITION_DESCRIPTION.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 411
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_DEFINITION_COHORT_DEFINITION_ID.txt
+2026-11-04 18:35:06	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 411
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_DEFINITION_COHORT_DEFINITION_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_NAME] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 413
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_DEFINITION_COHORT_DEFINITION_NAME.txt
+2026-11-04 18:35:06	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_NAME] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 413
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_DEFINITION_COHORT_DEFINITION_NAME.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_SYNTAX] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 415
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_DEFINITION_COHORT_DEFINITION_SYNTAX.txt
+2026-11-04 18:35:07	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_DEFINITION_SYNTAX] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 415
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_DEFINITION_COHORT_DEFINITION_SYNTAX.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_INITIATION_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 413
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_DEFINITION_COHORT_INITIATION_DATE.txt
+2026-11-04 18:35:07	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT_DEFINITION] [CDM Field: COHORT_INITIATION_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 413
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_DEFINITION_COHORT_INITIATION_DATE.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT_DEFINITION] [CDM Field: DEFINITION_TYPE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 417
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_DEFINITION_DEFINITION_TYPE_CONCEPT_ID.txt
+2026-11-04 18:35:07	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT_DEFINITION] [CDM Field: DEFINITION_TYPE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 417
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_DEFINITION_DEFINITION_TYPE_CONCEPT_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT_DEFINITION] [CDM Field: SUBJECT_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 409
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_DEFINITION_SUBJECT_CONCEPT_ID.txt
+2026-11-04 18:35:07	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: COHORT_DEFINITION] [CDM Field: SUBJECT_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort_definition" does not exist
+  Position: 409
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_COHORT_DEFINITION_SUBJECT_CONCEPT_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_concept_id does not exist
+  Position: 463
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_CONDITION_OCCURRENCE_CONDITION_STATUS_CONCEPT_ID.txt
+2026-11-04 18:35:12	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_concept_id does not exist
+  Position: 463
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_CONDITION_OCCURRENCE_CONDITION_STATUS_CONCEPT_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_source_value does not exist
+  Position: 465
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_CONDITION_OCCURRENCE_CONDITION_STATUS_SOURCE_VALUE.txt
+2026-11-04 18:35:12	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_source_value does not exist
+  Position: 465
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_CONDITION_OCCURRENCE_CONDITION_STATUS_SOURCE_VALUE.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Position: 447
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_CONDITION_OCCURRENCE_PROVIDER_ID.txt
+2026-11-04 18:35:12	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Position: 447
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_CONDITION_OCCURRENCE_PROVIDER_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: STOP_REASON] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.stop_reason does not exist
+  Position: 447
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_CONDITION_OCCURRENCE_STOP_REASON.txt
+2026-11-04 18:35:13	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: STOP_REASON] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.stop_reason does not exist
+  Position: 447
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_CONDITION_OCCURRENCE_STOP_REASON.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Position: 451
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_CONDITION_OCCURRENCE_VISIT_DETAIL_ID.txt
+2026-11-04 18:35:13	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Position: 451
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_CONDITION_OCCURRENCE_VISIT_DETAIL_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DEATH] [CDM Field: CAUSE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_concept_id does not exist
+  Position: 422
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DEATH_CAUSE_CONCEPT_ID.txt
+2026-11-04 18:35:15	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DEATH] [CDM Field: CAUSE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_concept_id does not exist
+  Position: 422
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DEATH_CAUSE_CONCEPT_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_source_concept_id does not exist
+  Position: 429
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DEATH_CAUSE_SOURCE_CONCEPT_ID.txt
+2026-11-04 18:35:15	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_source_concept_id does not exist
+  Position: 429
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DEATH_CAUSE_SOURCE_CONCEPT_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_source_value does not exist
+  Position: 424
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DEATH_CAUSE_SOURCE_VALUE.txt
+2026-11-04 18:35:15	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_source_value does not exist
+  Position: 424
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DEATH_CAUSE_SOURCE_VALUE.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: DAYS_SUPPLY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.days_supply does not exist
+  Position: 433
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_DAYS_SUPPLY.txt
+2026-11-04 18:35:19	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: DAYS_SUPPLY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.days_supply does not exist
+  Position: 433
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_DAYS_SUPPLY.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: DOSE_UNIT_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.dose_unit_source_value does not exist
+  Position: 444
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_DOSE_UNIT_SOURCE_VALUE.txt
+2026-11-04 18:35:19	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: DOSE_UNIT_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.dose_unit_source_value does not exist
+  Position: 444
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_DOSE_UNIT_SOURCE_VALUE.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: LOT_NUMBER] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.lot_number does not exist
+  Position: 432
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_LOT_NUMBER.txt
+2026-11-04 18:35:22	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: LOT_NUMBER] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.lot_number does not exist
+  Position: 432
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_LOT_NUMBER.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Position: 433
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_PROVIDER_ID.txt
+2026-11-04 18:35:22	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Position: 433
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_PROVIDER_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: QUANTITY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.quantity does not exist
+  Position: 430
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_QUANTITY.txt
+2026-11-04 18:35:22	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: QUANTITY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.quantity does not exist
+  Position: 430
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_QUANTITY.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: REFILLS] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.refills does not exist
+  Position: 429
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_REFILLS.txt
+2026-11-04 18:35:22	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: REFILLS] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.refills does not exist
+  Position: 429
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_REFILLS.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_concept_id does not exist
+  Position: 438
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_ROUTE_CONCEPT_ID.txt
+2026-11-04 18:35:23	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_concept_id does not exist
+  Position: 438
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_ROUTE_CONCEPT_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_source_value does not exist
+  Position: 440
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_ROUTE_SOURCE_VALUE.txt
+2026-11-04 18:35:23	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_source_value does not exist
+  Position: 440
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_ROUTE_SOURCE_VALUE.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: SIG] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.sig does not exist
+  Position: 425
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_SIG.txt
+2026-11-04 18:35:23	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: SIG] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.sig does not exist
+  Position: 425
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_SIG.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: STOP_REASON] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.stop_reason does not exist
+  Position: 433
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_STOP_REASON.txt
+2026-11-04 18:35:23	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: STOP_REASON] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.stop_reason does not exist
+  Position: 433
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_STOP_REASON.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Position: 437
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_VISIT_DETAIL_ID.txt
+2026-11-04 18:35:23	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Position: 437
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_DRUG_EXPOSURE_VISIT_DETAIL_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.modifier_concept_id does not exist
+  Position: 455
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROCEDURE_OCCURRENCE_MODIFIER_CONCEPT_ID.txt
+2026-11-04 18:36:35	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.modifier_concept_id does not exist
+  Position: 455
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROCEDURE_OCCURRENCE_MODIFIER_CONCEPT_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.modifier_source_value does not exist
+  Position: 457
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROCEDURE_OCCURRENCE_MODIFIER_SOURCE_VALUE.txt
+2026-11-04 18:36:35	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.modifier_source_value does not exist
+  Position: 457
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROCEDURE_OCCURRENCE_MODIFIER_SOURCE_VALUE.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Position: 447
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROCEDURE_OCCURRENCE_PROVIDER_ID.txt
+2026-11-04 18:36:40	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: PROVIDER_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.provider_id does not exist
+  Position: 447
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROCEDURE_OCCURRENCE_PROVIDER_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: QUANTITY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.quantity does not exist
+  Position: 444
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROCEDURE_OCCURRENCE_QUANTITY.txt
+2026-11-04 18:36:41	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: QUANTITY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.quantity does not exist
+  Position: 444
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROCEDURE_OCCURRENCE_QUANTITY.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Position: 451
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROCEDURE_OCCURRENCE_VISIT_DETAIL_ID.txt
+2026-11-04 18:36:41	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: VISIT_DETAIL_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.visit_detail_id does not exist
+  Position: 451
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROCEDURE_OCCURRENCE_VISIT_DETAIL_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROVIDER] [CDM Field: DEA] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.dea does not exist
+  Position: 415
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROVIDER_DEA.txt
+2026-11-04 18:36:41	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROVIDER] [CDM Field: DEA] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.dea does not exist
+  Position: 415
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROVIDER_DEA.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROVIDER] [CDM Field: GENDER_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.gender_source_concept_id does not exist
+  Position: 436
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROVIDER_GENDER_SOURCE_CONCEPT_ID.txt
+2026-11-04 18:36:41	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROVIDER] [CDM Field: GENDER_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.gender_source_concept_id does not exist
+  Position: 436
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROVIDER_GENDER_SOURCE_CONCEPT_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROVIDER] [CDM Field: NPI] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.npi does not exist
+  Position: 415
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROVIDER_NPI.txt
+2026-11-04 18:36:42	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROVIDER] [CDM Field: NPI] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.npi does not exist
+  Position: 415
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROVIDER_NPI.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROVIDER] [CDM Field: SPECIALTY_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.specialty_source_concept_id does not exist
+  Position: 439
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROVIDER_SPECIALTY_SOURCE_CONCEPT_ID.txt
+2026-11-04 18:36:42	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROVIDER] [CDM Field: SPECIALTY_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.specialty_source_concept_id does not exist
+  Position: 439
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROVIDER_SPECIALTY_SOURCE_CONCEPT_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROVIDER] [CDM Field: YEAR_OF_BIRTH] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.year_of_birth does not exist
+  Position: 425
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROVIDER_YEAR_OF_BIRTH.txt
+2026-11-04 18:36:43	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: PROVIDER] [CDM Field: YEAR_OF_BIRTH] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.year_of_birth does not exist
+  Position: 425
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_PROVIDER_YEAR_OF_BIRTH.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_concept_id does not exist
+  Position: 452
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_VISIT_OCCURRENCE_ADMITTED_FROM_CONCEPT_ID.txt
+2026-11-04 18:36:46	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_concept_id does not exist
+  Position: 452
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_VISIT_OCCURRENCE_ADMITTED_FROM_CONCEPT_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_source_value does not exist
+  Position: 454
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_VISIT_OCCURRENCE_ADMITTED_FROM_SOURCE_VALUE.txt
+2026-11-04 18:36:46	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_source_value does not exist
+  Position: 454
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_VISIT_OCCURRENCE_ADMITTED_FROM_SOURCE_VALUE.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_concept_id does not exist
+  Position: 452
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_VISIT_OCCURRENCE_DISCHARGED_TO_CONCEPT_ID.txt
+2026-11-04 18:36:48	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_concept_id does not exist
+  Position: 452
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_VISIT_OCCURRENCE_DISCHARGED_TO_CONCEPT_ID.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_source_value does not exist
+  Position: 454
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_VISIT_OCCURRENCE_DISCHARGED_TO_SOURCE_VALUE.txt
+2026-11-04 18:36:49	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_source_value does not exist
+  Position: 454
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_VISIT_OCCURRENCE_DISCHARGED_TO_SOURCE_VALUE.txt
+[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: PRECEDING_VISIT_OCCURRENCE_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.preceding_visit_occurrence_id does not exist
+  Position: 457
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_VISIT_OCCURRENCE_PRECEDING_VISIT_OCCURRENCE_ID.txt
+2026-11-04 18:36:49	[Level: FIELD] [Check: measureValueCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: PRECEDING_VISIT_OCCURRENCE_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.preceding_visit_occurrence_id does not exist
+  Position: 457
+An error report has been created at  docs/dqd/errors/FIELD_measureValueCompleteness_VISIT_OCCURRENCE_PRECEDING_VISIT_OCCURRENCE_ID.txt
+Processing check description: standardConceptRecordCompleteness
+2026-11-04 18:36:52	Processing check description: standardConceptRecordCompleteness
+[Level: FIELD] [Check: standardConceptRecordCompleteness] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_concept_id does not exist
+  Position: 841
+An error report has been created at  docs/dqd/errors/FIELD_standardConceptRecordCompleteness_CONDITION_OCCURRENCE_CONDITION_STATUS_CONCEPT_ID.txt
+2026-11-04 18:36:55	[Level: FIELD] [Check: standardConceptRecordCompleteness] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_concept_id does not exist
+  Position: 841
+An error report has been created at  docs/dqd/errors/FIELD_standardConceptRecordCompleteness_CONDITION_OCCURRENCE_CONDITION_STATUS_CONCEPT_ID.txt
+[Level: FIELD] [Check: standardConceptRecordCompleteness] [CDM Table: DEATH] [CDM Field: CAUSE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_concept_id does not exist
+  Position: 800
+An error report has been created at  docs/dqd/errors/FIELD_standardConceptRecordCompleteness_DEATH_CAUSE_CONCEPT_ID.txt
+2026-11-04 18:36:56	[Level: FIELD] [Check: standardConceptRecordCompleteness] [CDM Table: DEATH] [CDM Field: CAUSE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_concept_id does not exist
+  Position: 800
+An error report has been created at  docs/dqd/errors/FIELD_standardConceptRecordCompleteness_DEATH_CAUSE_CONCEPT_ID.txt
+[Level: FIELD] [Check: standardConceptRecordCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_concept_id does not exist
+  Position: 816
+An error report has been created at  docs/dqd/errors/FIELD_standardConceptRecordCompleteness_DRUG_EXPOSURE_ROUTE_CONCEPT_ID.txt
+2026-11-04 18:36:59	[Level: FIELD] [Check: standardConceptRecordCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_concept_id does not exist
+  Position: 816
+An error report has been created at  docs/dqd/errors/FIELD_standardConceptRecordCompleteness_DRUG_EXPOSURE_ROUTE_CONCEPT_ID.txt
+[Level: FIELD] [Check: standardConceptRecordCompleteness] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.modifier_concept_id does not exist
+  Position: 833
+An error report has been created at  docs/dqd/errors/FIELD_standardConceptRecordCompleteness_PROCEDURE_OCCURRENCE_MODIFIER_CONCEPT_ID.txt
+2026-11-04 18:37:26	[Level: FIELD] [Check: standardConceptRecordCompleteness] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.modifier_concept_id does not exist
+  Position: 833
+An error report has been created at  docs/dqd/errors/FIELD_standardConceptRecordCompleteness_PROCEDURE_OCCURRENCE_MODIFIER_CONCEPT_ID.txt
+[Level: FIELD] [Check: standardConceptRecordCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_concept_id does not exist
+  Position: 830
+An error report has been created at  docs/dqd/errors/FIELD_standardConceptRecordCompleteness_VISIT_OCCURRENCE_ADMITTED_FROM_CONCEPT_ID.txt
+2026-11-04 18:37:30	[Level: FIELD] [Check: standardConceptRecordCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_concept_id does not exist
+  Position: 830
+An error report has been created at  docs/dqd/errors/FIELD_standardConceptRecordCompleteness_VISIT_OCCURRENCE_ADMITTED_FROM_CONCEPT_ID.txt
+[Level: FIELD] [Check: standardConceptRecordCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_concept_id does not exist
+  Position: 830
+An error report has been created at  docs/dqd/errors/FIELD_standardConceptRecordCompleteness_VISIT_OCCURRENCE_DISCHARGED_TO_CONCEPT_ID.txt
+2026-11-04 18:37:30	[Level: FIELD] [Check: standardConceptRecordCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_concept_id does not exist
+  Position: 830
+An error report has been created at  docs/dqd/errors/FIELD_standardConceptRecordCompleteness_VISIT_OCCURRENCE_DISCHARGED_TO_CONCEPT_ID.txt
+Processing check description: sourceConceptRecordCompleteness
+2026-11-04 18:37:32	Processing check description: sourceConceptRecordCompleteness
+[Level: FIELD] [Check: sourceConceptRecordCompleteness] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_source_concept_id does not exist
+  Position: 807
+An error report has been created at  docs/dqd/errors/FIELD_sourceConceptRecordCompleteness_DEATH_CAUSE_SOURCE_CONCEPT_ID.txt
+2026-11-04 18:37:33	[Level: FIELD] [Check: sourceConceptRecordCompleteness] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_source_concept_id does not exist
+  Position: 807
+An error report has been created at  docs/dqd/errors/FIELD_sourceConceptRecordCompleteness_DEATH_CAUSE_SOURCE_CONCEPT_ID.txt
+[Level: FIELD] [Check: sourceConceptRecordCompleteness] [CDM Table: PROVIDER] [CDM Field: SPECIALTY_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.specialty_source_concept_id does not exist
+  Position: 817
+An error report has been created at  docs/dqd/errors/FIELD_sourceConceptRecordCompleteness_PROVIDER_SPECIALTY_SOURCE_CONCEPT_ID.txt
+2026-11-04 18:38:08	[Level: FIELD] [Check: sourceConceptRecordCompleteness] [CDM Table: PROVIDER] [CDM Field: SPECIALTY_SOURCE_CONCEPT_ID] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.specialty_source_concept_id does not exist
+  Position: 817
+An error report has been created at  docs/dqd/errors/FIELD_sourceConceptRecordCompleteness_PROVIDER_SPECIALTY_SOURCE_CONCEPT_ID.txt
+Processing check description: sourceValueCompleteness
+2026-11-04 18:38:11	Processing check description: sourceValueCompleteness
+[Level: FIELD] [Check: sourceValueCompleteness] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_source_value does not exist
+  Position: 466
+An error report has been created at  docs/dqd/errors/FIELD_sourceValueCompleteness_CONDITION_OCCURRENCE_CONDITION_STATUS_SOURCE_VALUE.txt
+2026-11-04 18:38:12	[Level: FIELD] [Check: sourceValueCompleteness] [CDM Table: CONDITION_OCCURRENCE] [CDM Field: CONDITION_STATUS_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.condition_status_source_value does not exist
+  Position: 466
+An error report has been created at  docs/dqd/errors/FIELD_sourceValueCompleteness_CONDITION_OCCURRENCE_CONDITION_STATUS_SOURCE_VALUE.txt
+[Level: FIELD] [Check: sourceValueCompleteness] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_source_value does not exist
+  Position: 440
+An error report has been created at  docs/dqd/errors/FIELD_sourceValueCompleteness_DEATH_CAUSE_SOURCE_VALUE.txt
+2026-11-04 18:38:12	[Level: FIELD] [Check: sourceValueCompleteness] [CDM Table: DEATH] [CDM Field: CAUSE_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.cause_source_value does not exist
+  Position: 440
+An error report has been created at  docs/dqd/errors/FIELD_sourceValueCompleteness_DEATH_CAUSE_SOURCE_VALUE.txt
+[Level: FIELD] [Check: sourceValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_source_value does not exist
+  Position: 448
+An error report has been created at  docs/dqd/errors/FIELD_sourceValueCompleteness_DRUG_EXPOSURE_ROUTE_SOURCE_VALUE.txt
+2026-11-04 18:38:14	[Level: FIELD] [Check: sourceValueCompleteness] [CDM Table: DRUG_EXPOSURE] [CDM Field: ROUTE_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.route_source_value does not exist
+  Position: 448
+An error report has been created at  docs/dqd/errors/FIELD_sourceValueCompleteness_DRUG_EXPOSURE_ROUTE_SOURCE_VALUE.txt
+[Level: FIELD] [Check: sourceValueCompleteness] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.modifier_source_value does not exist
+  Position: 458
+An error report has been created at  docs/dqd/errors/FIELD_sourceValueCompleteness_PROCEDURE_OCCURRENCE_MODIFIER_SOURCE_VALUE.txt
+2026-11-04 18:38:48	[Level: FIELD] [Check: sourceValueCompleteness] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: MODIFIER_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.modifier_source_value does not exist
+  Position: 458
+An error report has been created at  docs/dqd/errors/FIELD_sourceValueCompleteness_PROCEDURE_OCCURRENCE_MODIFIER_SOURCE_VALUE.txt
+[Level: FIELD] [Check: sourceValueCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_source_value does not exist
+  Position: 459
+An error report has been created at  docs/dqd/errors/FIELD_sourceValueCompleteness_VISIT_OCCURRENCE_ADMITTED_FROM_SOURCE_VALUE.txt
+2026-11-04 18:38:55	[Level: FIELD] [Check: sourceValueCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: ADMITTED_FROM_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.admitted_from_source_value does not exist
+  Position: 459
+An error report has been created at  docs/dqd/errors/FIELD_sourceValueCompleteness_VISIT_OCCURRENCE_ADMITTED_FROM_SOURCE_VALUE.txt
+[Level: FIELD] [Check: sourceValueCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_source_value does not exist
+  Position: 459
+An error report has been created at  docs/dqd/errors/FIELD_sourceValueCompleteness_VISIT_OCCURRENCE_DISCHARGED_TO_SOURCE_VALUE.txt
+2026-11-04 18:38:55	[Level: FIELD] [Check: sourceValueCompleteness] [CDM Table: VISIT_OCCURRENCE] [CDM Field: DISCHARGED_TO_SOURCE_VALUE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.discharged_to_source_value does not exist
+  Position: 459
+An error report has been created at  docs/dqd/errors/FIELD_sourceValueCompleteness_VISIT_OCCURRENCE_DISCHARGED_TO_SOURCE_VALUE.txt
+Processing check description: plausibleValueLow
+2026-11-04 18:38:57	Processing check description: plausibleValueLow
+[Level: FIELD] [Check: plausibleValueLow] [CDM Table: COHORT] [CDM Field: COHORT_END_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 453
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueLow_COHORT_COHORT_END_DATE.txt
+2026-11-04 18:38:58	[Level: FIELD] [Check: plausibleValueLow] [CDM Table: COHORT] [CDM Field: COHORT_END_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 453
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueLow_COHORT_COHORT_END_DATE.txt
+[Level: FIELD] [Check: plausibleValueLow] [CDM Table: COHORT] [CDM Field: COHORT_START_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 455
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueLow_COHORT_COHORT_START_DATE.txt
+2026-11-04 18:38:58	[Level: FIELD] [Check: plausibleValueLow] [CDM Table: COHORT] [CDM Field: COHORT_START_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 455
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueLow_COHORT_COHORT_START_DATE.txt
+[Level: FIELD] [Check: plausibleValueLow] [CDM Table: DRUG_EXPOSURE] [CDM Field: DAYS_SUPPLY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.days_supply does not exist
+  Position: 501
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueLow_DRUG_EXPOSURE_DAYS_SUPPLY.txt
+2026-11-04 18:39:02	[Level: FIELD] [Check: plausibleValueLow] [CDM Table: DRUG_EXPOSURE] [CDM Field: DAYS_SUPPLY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.days_supply does not exist
+  Position: 501
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueLow_DRUG_EXPOSURE_DAYS_SUPPLY.txt
+[Level: FIELD] [Check: plausibleValueLow] [CDM Table: DRUG_EXPOSURE] [CDM Field: QUANTITY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.quantity does not exist
+  Position: 498
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueLow_DRUG_EXPOSURE_QUANTITY.txt
+2026-11-04 18:39:04	[Level: FIELD] [Check: plausibleValueLow] [CDM Table: DRUG_EXPOSURE] [CDM Field: QUANTITY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.quantity does not exist
+  Position: 498
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueLow_DRUG_EXPOSURE_QUANTITY.txt
+[Level: FIELD] [Check: plausibleValueLow] [CDM Table: DRUG_EXPOSURE] [CDM Field: REFILLS] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.refills does not exist
+  Position: 497
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueLow_DRUG_EXPOSURE_REFILLS.txt
+2026-11-04 18:39:04	[Level: FIELD] [Check: plausibleValueLow] [CDM Table: DRUG_EXPOSURE] [CDM Field: REFILLS] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.refills does not exist
+  Position: 497
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueLow_DRUG_EXPOSURE_REFILLS.txt
+[Level: FIELD] [Check: plausibleValueLow] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: QUANTITY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.quantity does not exist
+  Position: 512
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueLow_PROCEDURE_OCCURRENCE_QUANTITY.txt
+2026-11-04 18:39:48	[Level: FIELD] [Check: plausibleValueLow] [CDM Table: PROCEDURE_OCCURRENCE] [CDM Field: QUANTITY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.quantity does not exist
+  Position: 512
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueLow_PROCEDURE_OCCURRENCE_QUANTITY.txt
+Processing check description: plausibleValueHigh
+2026-11-04 18:39:51	Processing check description: plausibleValueHigh
+[Level: FIELD] [Check: plausibleValueHigh] [CDM Table: COHORT] [CDM Field: COHORT_END_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 408
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueHigh_COHORT_COHORT_END_DATE.txt
+2026-11-04 18:39:51	[Level: FIELD] [Check: plausibleValueHigh] [CDM Table: COHORT] [CDM Field: COHORT_END_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 408
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueHigh_COHORT_COHORT_END_DATE.txt
+[Level: FIELD] [Check: plausibleValueHigh] [CDM Table: COHORT] [CDM Field: COHORT_START_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 410
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueHigh_COHORT_COHORT_START_DATE.txt
+2026-11-04 18:39:51	[Level: FIELD] [Check: plausibleValueHigh] [CDM Table: COHORT] [CDM Field: COHORT_START_DATE] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: relation "etl_meta.cohort" does not exist
+  Position: 410
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueHigh_COHORT_COHORT_START_DATE.txt
+[Level: FIELD] [Check: plausibleValueHigh] [CDM Table: DRUG_EXPOSURE] [CDM Field: DAYS_SUPPLY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.days_supply does not exist
+  Position: 455
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueHigh_DRUG_EXPOSURE_DAYS_SUPPLY.txt
+2026-11-04 18:39:54	[Level: FIELD] [Check: plausibleValueHigh] [CDM Table: DRUG_EXPOSURE] [CDM Field: DAYS_SUPPLY] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.days_supply does not exist
+  Position: 455
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueHigh_DRUG_EXPOSURE_DAYS_SUPPLY.txt
+[Level: FIELD] [Check: plausibleValueHigh] [CDM Table: DRUG_EXPOSURE] [CDM Field: REFILLS] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.refills does not exist
+  Position: 451
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueHigh_DRUG_EXPOSURE_REFILLS.txt
+2026-11-04 18:39:56	[Level: FIELD] [Check: plausibleValueHigh] [CDM Table: DRUG_EXPOSURE] [CDM Field: REFILLS] Error executing SQL:
+org.postgresql.util.PSQLException: ERROR: column cdmtable.refills does not exist
+  Position: 451
+An error report has been created at  docs/dqd/errors/FIELD_plausibleValueHigh_DRUG_EXPOSURE_REFILLS.txt
+Processing check description: plausibleTemporalAfter
+2026-11-04 18:40:48	Processing check description: plausibleTemporalAfter
+Processing check description: plausibleDuringLife
+2026-11-04 18:41:38	Processing check description: plausibleDuringLife
+Processing check description: withinVisitDates
+2026-11-04 18:41:48	Processing check description: withinVisitDates
+Processing check description: plausibleAfterBirth
+2026-11-04 18:42:48	Processing check description: plausibleAfterBirth
+Processing check description: plausibleBeforeDeath
+2026-11-04 18:43:31	Processing check description: plausibleBeforeDeath
+Processing check description: plausibleStartBeforeEnd
+2026-11-04 18:44:05	Processing check description: plausibleStartBeforeEnd
+Processing check description: plausibleGender
+2026-11-04 18:44:16	Processing check description: plausibleGender
+Processing check description: plausibleGenderUseDescendants
+2026-11-04 18:44:57	Processing check description: plausibleGenderUseDescendants
+Processing check description: plausibleUnitConceptIds
+2026-11-04 18:45:04	Processing check description: plausibleUnitConceptIds
+Error in .calculateNotApplicableStatus(checkResults) : 
+  Duplicate table names in emptyTables indicates an issue with check execution - measureValueCompleteness had different denominator counts for the same table: CONDITION_OCCURRENCE, DEATH, DRUG_EXPOSURE, PROCEDURE_OCCURRENCE, PROVIDER, VISIT_OCCURRENCE
+Calls: executeDqChecks ... .evaluateThresholds -> .calculateNotApplicableStatus
+In addition: Warning messages:
+1: In executeDqChecks(connectionDetails = details, cdmDatabaseSchema = "cdm",  :
+  DEPRECATION WARNING - The plausibleDuringLife check has been reimplemented with the plausibleBeforeDeath check.
+2: In executeDqChecks(connectionDetails = details, cdmDatabaseSchema = "cdm",  :
+  DEPRECATION WARNING - The plausibleTemporalAfter check has been reimplemented with the plausibleAfterBirth and plausibleStartBeforeEnd checks.
+3: In executeDqChecks(connectionDetails = details, cdmDatabaseSchema = "cdm",  :
+  DEPRECATION WARNING - The plausibleGender check has been reimplemented with the plausibleGenderUseDescendants check.
+Execution halted

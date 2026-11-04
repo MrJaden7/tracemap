@@ -22,6 +22,11 @@ from typing import Protocol
 from rank_bm25 import BM25Okapi
 
 MODEL_ID = os.environ.get("TRACEMAP_LLM_MODEL", "claude-sonnet-4-6")
+# Claude 5-family models (sonnet-4-6 and newer) do not accept a `temperature` parameter:
+# the Anthropic API returns 400 "temperature: Extra inputs are not permitted". The model
+# runs with whatever internal sampling Anthropic chose, and in practice its output on
+# our constrained JSON task is identical across runs. That is why run-to-run metric
+# stdev is 0.000 in the evaluation; it is not a caching artefact in this code.
 
 WORD_RE = re.compile(r"[a-z0-9]+")
 
@@ -225,6 +230,7 @@ class LlmReRanker:
             for c in candidates
         )
         prompt = f"Source term: {term!r}\n\nCandidates:\n{cand_lines}\n\nReturn JSON only."
+        # No temperature knob on claude-sonnet-4-6 (see module docstring).
         response = client.messages.create(
             model=MODEL_ID,
             max_tokens=200,

@@ -19,13 +19,19 @@ read_env <- function(key, default = NULL) {
   if (nchar(value) == 0) default else value
 }
 
+jdbcDriverPath <- read_env(
+  "DATABASECONNECTOR_JAR_FOLDER",
+  normalizePath("~/.jdbc_drivers", winslash = "/", mustWork = FALSE)
+)
+
 details <- createConnectionDetails(
   dbms     = "postgresql",
   server   = paste0(read_env("TRACEMAP_DB_HOST", "localhost"), "/",
                    read_env("TRACEMAP_DB_NAME", "tracemap")),
   port     = as.integer(read_env("TRACEMAP_DB_PORT", "5440")),
   user     = read_env("TRACEMAP_DB_USER", "tracemap"),
-  password = read_env("TRACEMAP_DB_PASSWORD", "tracemap")
+  password = read_env("TRACEMAP_DB_PASSWORD", "tracemap"),
+  pathToDriver = jdbcDriverPath
 )
 
 outputFolder <- file.path("docs", "dqd")

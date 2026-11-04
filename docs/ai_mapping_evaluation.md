@@ -58,13 +58,20 @@ Not deterministic in principle:
 
 Computed by `tracemap ai evaluate --use-llm` directly (`src/tracemap/ai_mapping/statistics.py`), 2000 paired resamples over the 175 test items:
 
-| Metric             | Mean diff | 95% CI             | Statistically significant? |
-|--------------------|-----------|--------------------|----------------------------|
-| top-1 accuracy     | +0.046    | [-0.006, +0.097]   | **No** - the lower bound crosses zero |
-| coverage           | -0.149    | [-0.211, -0.091]   | Yes (LLM gives up more, by design) |
-| correct abstention | +0.131    | [+0.086, +0.183]   | Yes |
+| Metric             | n (denominator)        | Mean diff | 95% CI             | Statistically significant? |
+|--------------------|-----------------------:|-----------|--------------------|----------------------------|
+| top-1 accuracy     | 146 mappable items     | +0.055    | [+0.000, +0.110]   | **Marginal** - the lower bound is exactly 0.000 |
+| precision          | 175 items (resample)   | +0.191    | [+0.128, +0.264]   | Yes |
+| coverage           | 175 items              | -0.149    | [-0.211, -0.091]   | Yes (LLM gives up more, by design) |
+| correct abstention | 29 unmappable items    | +0.793    | [+0.655, +0.931]   | Yes |
 
-Honesty note on the headline: an earlier draft of this document, written against the full 350-item gold set rather than the held-out test set, reported a +5.2-point top-1 accuracy lift. On the test set the lift is +4.6 and the 95% CI includes zero. I should not have called this a reliable win before now. The real, statistically-significant wins are precision (+19 points on the point estimate, 0.731 to 0.922) and correct abstention (+13 points on the committed-only resampling framing, or +79 points on the full-set unmappable-only framing: 0.034 to 0.828). Both are clearly outside noise.
+Honesty notes on this table:
+
+1. **This is the second version.** An earlier CI table in this document averaged a boolean over all 175 items for every metric, which pulled the top-1 and abstention CIs onto the wrong denominator. The new `src/tracemap/ai_mapping/statistics.py` resamples from the right items per metric, and the mean differences now match the point estimates from the main table (within one prediction flip). Six unit tests in `tests/unit/test_statistics.py` lock this behaviour in.
+
+2. **Top-1 accuracy is a marginal win, not a win.** The 95% CI lower bound is exactly +0.000 on 146 mappable items. I am not calling this a statistically significant improvement. The real, defensible wins are precision (+19 points, CI [+0.128, +0.264]) and correct abstention (+79 points, CI [+0.655, +0.931]).
+
+3. **The abstention CI has only n=29.** 29 unmappable items is a small sample for a 95% CI, which is why the interval is wide (about 28 percentage points). The signal is still very clear because the gap is so large (0.034 to 0.828): no plausible resample moves this below +0.655.
 
 ## Discussion
 

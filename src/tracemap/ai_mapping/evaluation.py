@@ -44,7 +44,7 @@ class Evaluation:
     def __init__(self, items: list[GoldItem]):
         self.items = items
         # Per-method per-item outcome arrays, used for bootstrap CIs. Keyed by method name.
-        self._outcomes: dict[str, list[dict]] = {}
+        self._outcomes: dict[str, list] = {}
 
     def run(self, method: Method) -> EvaluationResult:
         results: list[_PerItemResult] = []
@@ -75,17 +75,19 @@ class Evaluation:
         )
 
         # Persist per-item outcomes for bootstrap CIs. Overwritten on each run of a method.
+        # Each entry carries enough information to compute every metric on its own
+        # correct denominator (see src/tracemap/ai_mapping/statistics.py).
+        from tracemap.ai_mapping.statistics import ItemOutcome
         self._outcomes[method.name] = [
-            {
-                "correct_top1": (
+            ItemOutcome(
+                is_mappable=(r.item.expected_concept_id is not None),
+                committed=(r.predicted_concept_id is not None),
+                correct_prediction=(
                     r.item.expected_concept_id is not None
                     and r.predicted_concept_id == r.item.expected_concept_id
                 ),
-                "committed": r.predicted_concept_id is not None,
-                "correct_abstention": (
-                    r.item.expected_concept_id is None and r.predicted_concept_id is None
-                ),
-            }
+                abstained=(r.predicted_concept_id is None),
+            )
             for r in results
         ]
 
@@ -131,7 +133,22 @@ def evaluate_all(
     return [e.repeat(m, repeats=repeats) for m in methods]
 
 
-def outcomes_for(ev: Evaluation, method_name: str, metric: str) -> list[bool]:
-    """Pull one method's per-item outcome vector for the given metric from the Evaluation
-    object after a run. Used by the bootstrap CI helpers."""
-    return [row[metric] for row in ev._outcomes.get(method_name, [])]
+def outcomes_for(ev: Evaluation, method_name: str, metric: str | None = None):
+    """Return per-item outcomes for a method from the last run.
+
+    Pass `metric=None` to get ItemOutcome records (new code; used by bootstrap_all).
+    Pass a metric name ('correct_top1' / 'committed' / 'correct_abstention') to get a
+    bool list (compatible with the old deprecated bootstrap_diff signature).
+    """
+    rows = ev._outcomes.get(method_name, [])
+    if metric is None:
+        return rows
+    attr_map = {
+        "correct_top1": "correct_prediction",
+        "committed": "committed",
+        "correct_abstention": lambda o: (not o.is_mappable) and o.abstained,
+    }
+    key = attr_map.get(metric, metric)
+    if callable(key):
+        return [key(r) for r in rows]
+    return [getattr(r, key) for r in rows]

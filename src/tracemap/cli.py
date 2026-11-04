@@ -27,8 +27,10 @@ from tracemap.ai_mapping import (
     load_test_set,
 )
 from tracemap.ai_mapping import gold as gold_mod
+from tracemap.ai_mapping.agreement import compute_agreement
+from tracemap.ai_mapping.agreement import summarise as agreement_summarise
 from tracemap.ai_mapping.evaluation import Evaluation, outcomes_for
-from tracemap.ai_mapping.statistics import bootstrap_diff
+from tracemap.ai_mapping.statistics import bootstrap_all
 from tracemap.config import get_settings
 from tracemap.db import connect
 from tracemap.generate import write_cdm_models, write_docs, write_schema_tests
@@ -500,33 +502,62 @@ def ai_evaluate(
     console.print(table)
 
     # Bootstrap CIs for the llm_rerank_anthropic vs hybrid comparison.
+    # Each metric on its own correct denominator: top-1 over mappable items only,
+    # correct abstention over unmappable items only, precision over committed items per
+    # resample, coverage over all items.
     if use_llm:
-        llm_out = {
-            m: outcomes_for(e, "llm_rerank_anthropic", m)
-            for m in ("correct_top1", "committed", "correct_abstention")
-        }
-        hyb_out = {
-            m: outcomes_for(e, "hybrid", m)
-            for m in ("correct_top1", "committed", "correct_abstention")
-        }
-        if llm_out["correct_top1"] and hyb_out["correct_top1"]:
+        llm_out = outcomes_for(e, "llm_rerank_anthropic")
+        hyb_out = outcomes_for(e, "hybrid")
+        if llm_out and hyb_out:
             ci_table = Table(title="llm_rerank_anthropic minus hybrid, 95% paired bootstrap CI")
-            for c in ("Metric", "Mean diff", "95% CI lower", "95% CI upper", "n"):
+            for c in ("Metric", "Mean diff", "95% CI lower", "95% CI upper", "n", "note"):
                 ci_table.add_column(c)
-            for metric, label in [
-                ("correct_top1", "top-1 accuracy"),
-                ("committed", "coverage"),
-                ("correct_abstention", "correct abstention"),
-            ]:
-                ci = bootstrap_diff(llm_out[metric], hyb_out[metric])
+            cis = bootstrap_all(llm_out, hyb_out)
+            for metric_label, ci in cis.items():
                 ci_table.add_row(
-                    label,
+                    metric_label,
                     f"{ci.mean_diff:+.3f}",
                     f"{ci.lower:+.3f}",
                     f"{ci.upper:+.3f}",
                     str(ci.n),
+                    ci.note or "-",
                 )
             console.print(ci_table)
+
+
+@ai_app.command("agreement")
+def ai_agreement(
+    runs: Annotated[int, typer.Option(help="Number of repeated calls per item.")] = 5,
+    sample: Annotated[int, typer.Option(help="How many test items to sample (0 = all).")] = 30,
+) -> None:
+    """Call the LLM re-ranker N times per item and report per-item agreement.
+
+    Used to answer 'is the zero-stdev in the evaluation an artefact, or is the model
+    actually consistent?'. Prints a summary and highlights items where runs disagree.
+    """
+    items = load_test_set()
+    if sample > 0:
+        items = items[:sample]
+    method = LlmReRanker(mode="anthropic")
+    console.print(
+        f"Running {len(items)} items x {runs} calls = {len(items) * runs} API calls. "
+        "Note: claude-sonnet-4-6 does not accept a temperature parameter (see methods.py)."
+    )
+    rows = compute_agreement(method, items, runs)
+    summary = agreement_summarise(rows, runs)
+    console.print()
+    for k, v in summary.items():
+        console.print(f"  {k:<40} {v}")
+    disagreements = [r for r in rows if not r.unanimous]
+    if disagreements:
+        console.print()
+        console.print(f"Disagreeing items ({len(disagreements)}):")
+        for r in disagreements[:20]:
+            preds_str = ", ".join("None" if p is None else str(p) for p in r.predictions)
+            console.print(
+                f"  term={r.item.term!r:40}  expected={r.item.expected_concept_id}  "
+                f"preds=[{preds_str}]"
+            )
 
 
 if __name__ == "__main__":

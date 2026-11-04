@@ -124,15 +124,20 @@ uv run tracemap ai evaluate --repeats 5 --use-llm --split test
 
 **Note on the zero standard deviations.** 5 runs of 175 items each produced identical metrics at 3-decimal rounding for every method, including the Anthropic re-ranker. The deterministic baselines are deterministic by construction (no randomness in BM25 scoring, exact match, or the no-LLM fallback). The LLM re-ranker's zero stdev reflects that `claude-sonnet-4-6` is highly consistent on this constrained JSON-output task; any run-to-run variation is below the 0.0005 rounding boundary. I did not increase the display precision to show a flattering-looking tiny stdev.
 
-**Bootstrap 95% paired confidence intervals, llm_rerank_anthropic minus hybrid, n = 175:**
+**Bootstrap 95% paired confidence intervals, llm_rerank_anthropic minus hybrid, PER METRIC DENOMINATOR.**
 
-| Metric             | Mean diff | 95% CI             | Significant? |
-|--------------------|-----------|--------------------|--------------|
-| top-1 accuracy     | +0.046    | [-0.006, +0.097]   | **No** (CI crosses zero) |
-| coverage           | -0.149    | [-0.211, -0.091]   | Yes (LLM gives up more, by design) |
-| correct abstention | +0.131    | [+0.086, +0.183]   | Yes |
+The earlier numbers in this document were from a bootstrap that averaged a boolean over all 175 items regardless of metric. That was wrong. Each CI now resamples from the items that define its metric. Implementation in `src/tracemap/ai_mapping/statistics.py`; 6 unit tests pin the correct behaviour. CI widths are from 2,000 paired resamples.
 
-The top-1 accuracy lift is **not statistically significant** at the 95% level on this test-set size. The real, statistically-significant wins are precision (+19 points, 0.73 -> 0.92, visible from the point estimates) and correct abstention (+13 points on the committed-only subset, +80 points on the mappable-vs-unmappable framing).
+| Metric             | n (denominator)        | Mean diff | 95% CI             | Significant? |
+|--------------------|-----------------------:|----------:|--------------------|--------------|
+| top-1 accuracy     | 146 mappable items     | **+0.055** | [+0.000, +0.110]  | **Marginal** (lower bound touches zero) |
+| precision          | 175 items (resample)    | **+0.191** | [+0.128, +0.264] | Yes |
+| coverage           | 175 items               | **-0.149** | [-0.211, -0.091]  | Yes (LLM gives up more, by design) |
+| correct abstention | 29 unmappable items    | **+0.793** | [+0.655, +0.931]  | Yes |
+
+CI widths above are from the 2,000-resample paired bootstrap, now on the correct denominator per metric. Mean differences match the point estimates (0.890 - 0.836 = +0.054 for top-1, 0.922 - 0.731 = +0.191 for precision, 0.806 - 0.954 = -0.148 for coverage, 0.828 - 0.034 = +0.793 for abstention).
+
+The top-1 accuracy lift's 95% CI lower bound is exactly 0.000. I will not call this a win. The real, statistically-significant wins are precision (+19 points) and correct abstention (+79 points).
 
 ## Project totals
 
