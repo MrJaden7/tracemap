@@ -1,0 +1,59 @@
+Loading required package: DatabaseConnector
+Connecting using PostgreSQL driver
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  checkLevel = col_character(),
+  checkName = col_character(),
+  checkDescription = col_character(),
+  kahnContext = col_character(),
+  kahnCategory = col_character(),
+  kahnSubcategory = col_character(),
+  sqlFile = col_character(),
+  evaluationFilter = col_character(),
+  severity = col_character()
+)
+
+CDM Tables skipped: COHORT, COHORT_DEFINITION, VISIT_DETAIL, NOTE, NOTE_NLP, SPECIMEN, COST, PAYER_PLAN_PERIOD, EPISODE, EPISODE_EVENT, DEVICE_EXPOSURE, FACT_RELATIONSHIP, DOSE_ERA
+Connecting using PostgreSQL driver
+Processing check description: cdmTable
+Processing check description: measurePersonCompleteness
+Processing check description: measureConditionEraCompleteness
+Processing check description: measureObservationPeriodOverlap
+Processing check description: cdmField
+Processing check description: isRequired
+Processing check description: cdmDatatype
+Processing check description: isPrimaryKey
+Processing check description: isForeignKey
+Processing check description: fkDomain
+Processing check description: fkClass
+Processing check description: isStandardValidConcept
+Processing check description: measureValueCompleteness
+Processing check description: standardConceptRecordCompleteness
+Processing check description: sourceConceptRecordCompleteness
+Processing check description: sourceValueCompleteness
+Processing check description: plausibleValueLow
+Processing check description: plausibleValueHigh
+Processing check description: plausibleTemporalAfter
+Processing check description: plausibleDuringLife
+Processing check description: withinVisitDates
+Processing check description: plausibleAfterBirth
+Processing check description: plausibleBeforeDeath
+Processing check description: plausibleStartBeforeEnd
+Processing check description: plausibleGender
+Processing check description: plausibleGenderUseDescendants
+Processing check description: plausibleUnitConceptIds
+Writing results to file: docs/dqd/dqd_result.json
+Execution Complete
+Warning messages:
+1: In executeDqChecks(connectionDetails = details, cdmDatabaseSchema = "cdm",  :
+  DEPRECATION WARNING - The plausibleDuringLife check has been reimplemented with the plausibleBeforeDeath check.
+2: In executeDqChecks(connectionDetails = details, cdmDatabaseSchema = "cdm",  :
+  DEPRECATION WARNING - The plausibleTemporalAfter check has been reimplemented with the plausibleAfterBirth and plausibleStartBeforeEnd checks.
+3: In executeDqChecks(connectionDetails = details, cdmDatabaseSchema = "cdm",  :
+  DEPRECATION WARNING - The plausibleGender check has been reimplemented with the plausibleGenderUseDescendants check.
+DQD complete.
+Total checks: 1765 
+Failed: 0 
+Passed: 0 
+Not applicable: 0 

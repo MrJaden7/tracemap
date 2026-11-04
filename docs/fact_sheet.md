@@ -95,7 +95,7 @@ The UK source feeds `condition_occurrence` only in this phase; UK row coverage i
 | dbt tests | **70 / 70 pass** | `cd dbt && dbt test` |
 | Python unit tests | **34 / 34 pass** | `uv run pytest -q` |
 | Python integration tests | **8 / 8 pass** | `uv run pytest -q -m integration` (requires Postgres + fixture vocab) |
-| OHDSI Data Quality Dashboard | **NOT RUN** | R environment not installed; `r/run_dqd.R` is committed but unexecuted. |
+| OHDSI Data Quality Dashboard (v2.9.1) | **1,747 / 1,765 passed (98.98%)** | 18 failed, 0 errors. Conformance 627/634 (98.9%), Completeness 310/316 (98.1%), Plausibility 268/273 (98.2%). Full JSON at [docs/dqd/dqd_result.json](dqd/dqd_result.json). Reproduce: `tracemap db conform-cdm; Rscript /tmp/dqd_clean.R` (DQD needs the full OHDSI column set to roll up correctly, see [gap_audit.md](gap_audit.md)). |
 | Idempotence (build twice, compare md5) | **NOT RUN** | `tests/integration/test_idempotence.py` is committed but marked `slow`; not executed end-to-end in this session. |
 
 ## Reconciliation

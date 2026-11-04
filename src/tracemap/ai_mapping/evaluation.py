@@ -78,6 +78,7 @@ class Evaluation:
         # Each entry carries enough information to compute every metric on its own
         # correct denominator (see src/tracemap/ai_mapping/statistics.py).
         from tracemap.ai_mapping.statistics import ItemOutcome
+
         self._outcomes[method.name] = [
             ItemOutcome(
                 is_mappable=(r.item.expected_concept_id is not None),

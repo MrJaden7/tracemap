@@ -35,7 +35,7 @@ from tracemap.config import get_settings
 from tracemap.db import connect
 from tracemap.generate import write_cdm_models, write_docs, write_schema_tests
 from tracemap.lineage import trace_row
-from tracemap.load import ddl, raw, vocab
+from tracemap.load import conform_cdm, ddl, raw, vocab
 from tracemap.outputs import check_rows, load_rules
 from tracemap.quality import coverage as coverage_mod
 from tracemap.sources import uk_extract as uk_extract_mod
@@ -80,6 +80,21 @@ def db_migrate() -> None:
         for statement in ddl.split_statements(ddl.ETL_META_FILE.read_text(encoding="utf-8")):
             conn.execute(statement)
     console.print(f"Applied {ddl.ETL_META_FILE.name}")
+
+
+@db_app.command("conform-cdm")
+def db_conform_cdm() -> None:
+    """ALTER cdm.* tables to add back any OHDSI DDL columns our dbt models dropped."""
+    added = conform_cdm.conform_schema()
+    if not added:
+        console.print("All cdm.* tables already conform to the OHDSI DDL. Nothing to do.")
+        return
+    total = sum(len(cols) for cols in added.values())
+    for table, cols in sorted(added.items()):
+        tail = "..." if len(cols) > 6 else ""
+        preview = ", ".join(cols[:6])
+        console.print(f"  cdm.{table}: added {len(cols)} columns ({preview}{tail})")
+    console.print(f"Added {total} columns across {len(added)} tables.")
 
 
 @db_app.command("indices")

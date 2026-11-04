@@ -48,3 +48,4 @@ site/
 Thumbs.db
 .vscode/
 .idea/
+errorReportSql.txt
