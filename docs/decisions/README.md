@@ -1,0 +1,13 @@
+# Architecture Decision Records
+
+Each significant design choice in TraceMap is recorded as a numbered ADR: the context, the decision, the alternatives that were considered, and the consequences.
+
+An ADR is never edited to change its decision. If a decision changes, a new ADR supersedes the old one and the old one's status is updated to point at it.
+
+| ADR | Title | Status |
+|---|---|---|
+| [0001](0001-repository-layout-and-tooling.md) | Repository layout and tooling | Accepted |
+| [0002](0002-separate-vocab-schema.md) | Keep vocabulary tables in a separate vocab schema | Accepted |
+| [0003](0003-vocabulary-selection.md) | Vocabulary selection and release | Accepted |
+| [0004](0004-vocabulary-loading.md) | How vocabularies are loaded and verified | Accepted |
+| [0005](0005-verified-concept-constants.md) | Hard-coded concept IDs are verified against the vocabulary | Accepted |

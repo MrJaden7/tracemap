@@ -17,6 +17,7 @@ DDL_DIR = REPO_ROOT / "ddl"
 DDL_FILE = DDL_DIR / "OMOPCDM_postgresql_5.4_ddl.sql"
 PRIMARY_KEYS_FILE = DDL_DIR / "OMOPCDM_postgresql_5.4_primary_keys.sql"
 INDICES_FILE = DDL_DIR / "OMOPCDM_postgresql_5.4_indices.sql"
+ETL_META_FILE = DDL_DIR / "tracemap_etl_meta.sql"
 
 PROJECT_SCHEMAS = ("raw", "vocab", "cdm", "etl_meta")
 
@@ -72,15 +73,43 @@ def create_schemas(conn: psycopg.Connection, reset: bool = False) -> None:
 
 
 def apply_tables_and_primary_keys(conn: psycopg.Connection) -> int:
-    statements = routed_statements(DDL_FILE) + routed_statements(PRIMARY_KEYS_FILE)
+    statements = (
+        routed_statements(DDL_FILE)
+        + routed_statements(PRIMARY_KEYS_FILE)
+        + split_statements(ETL_META_FILE.read_text(encoding="utf-8"))
+    )
     for statement in statements:
         conn.execute(statement)
     return len(statements)
 
 
-def apply_indices(conn: psycopg.Connection) -> int:
-    """Apply OHDSI indices. Run after bulk loading, since indexes slow inserts."""
-    statements = routed_statements(INDICES_FILE)
+def target_schema(statement: str) -> str:
+    """The schema of the first table an OHDSI statement refers to."""
+    match = _TABLE_REF.search(statement)
+    if match is None:
+        raise ValueError(f"No @cdmDatabaseSchema table in statement: {statement[:80]}")
+    return schema_for_table(match.group(1))
+
+
+def index_statements(schema: str, include_cluster: bool = False) -> list[str]:
+    """OHDSI index statements for one schema.
+
+    CLUSTER physically reorders a table on disk. It does not change query results and
+    takes a long time on the multi-gigabyte vocabulary tables, so it is off by default.
+    """
+    selected = []
+    for statement in split_statements(INDICES_FILE.read_text(encoding="utf-8")):
+        if target_schema(statement) != schema:
+            continue
+        if statement.upper().startswith("CLUSTER") and not include_cluster:
+            continue
+        selected.append(route_statement(statement))
+    return selected
+
+
+def apply_indices(conn: psycopg.Connection, schema: str, include_cluster: bool = False) -> int:
+    """Apply OHDSI indices for one schema. Run after bulk loading, since indexes slow inserts."""
+    statements = index_statements(schema, include_cluster)
     for statement in statements:
         conn.execute(statement)
     return len(statements)
