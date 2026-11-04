@@ -41,3 +41,9 @@ CREATE TABLE IF NOT EXISTS raw.load_manifest (
 
 CREATE INDEX IF NOT EXISTS idx_load_manifest_run ON raw.load_manifest (run_id);
 CREATE INDEX IF NOT EXISTS idx_load_manifest_source_table ON raw.load_manifest (source_system, target_table);
+
+CREATE TABLE IF NOT EXISTS etl_meta.synthea_linkage_keys (
+    synthea_id   text PRIMARY KEY,
+    linkage_key  text NOT NULL,
+    recorded_at  timestamptz NOT NULL DEFAULT now()
+);

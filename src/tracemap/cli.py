@@ -18,10 +18,11 @@ from rich.table import Table
 from tracemap import synthea as synthea_runner
 from tracemap.config import get_settings
 from tracemap.db import connect
-from tracemap.generate import write_cdm_models, write_schema_tests
+from tracemap.generate import write_cdm_models, write_docs, write_schema_tests
 from tracemap.lineage import trace_row
 from tracemap.load import ddl, raw, vocab
 from tracemap.quality import coverage as coverage_mod
+from tracemap.sources import uk_extract as uk_extract_mod
 from tracemap.spec import load_all_specs
 
 app = typer.Typer(help="TraceMap: documentation-first OMOP CDM pipeline.", no_args_is_help=True)
@@ -186,7 +187,10 @@ def raw_load(
         console.print(f"[red]No such folder: {dir_opt}[/red]")
         raise typer.Exit(code=1)
 
-    csv_files = raw.discover_synthea_csvs(dir_opt)
+    if source == "uk_extract":
+        csv_files = raw.discover_uk_csvs(dir_opt)
+    else:
+        csv_files = raw.discover_synthea_csvs(dir_opt)
     if not csv_files:
         console.print(f"[red]No CSV files in {dir_opt}[/red]")
         raise typer.Exit(code=1)
@@ -236,10 +240,13 @@ def generate() -> None:
     """Regenerate every dbt CDM model and schema.yml from mapping_spec/*.yml."""
     cdm_paths = write_cdm_models()
     schema_path = write_schema_tests()
+    doc_paths = write_docs()
     for p in cdm_paths:
         console.print(f"  wrote {p.relative_to(ddl.DDL_FILE.parents[1])}")
     console.print(f"  wrote {schema_path.relative_to(ddl.DDL_FILE.parents[1])}")
-    console.print(f"Generated {len(cdm_paths)} CDM models + schema.yml")
+    console.print(
+        f"Generated {len(cdm_paths)} CDM models + schema.yml + {len(doc_paths)} doc files"
+    )
 
 
 @app.command("trace")
@@ -344,6 +351,26 @@ def build(
     with connect() as conn:
         coverage_mod.write_coverage_table(conn)
     console.print("[bold green]Build complete.[/bold green]")
+
+
+uk_app = typer.Typer(help="Synthetic UK extract commands.", no_args_is_help=True)
+app.add_typer(uk_app, name="uk-extract")
+
+
+@uk_app.command("generate")
+def uk_extract_generate(
+    patients: Annotated[int, typer.Option("--patients", help="Patients to include.")] = 1000,
+    seed: Annotated[int, typer.Option("--seed", help="Random seed.")] = 42,
+) -> None:
+    """Generate a synthetic UK hospital extract (ICD-10, OPCS-4) linked to Synthea via HMAC."""
+    out = uk_extract_mod.default_out_dir()
+    console.print(f"Generating UK extract into {out} ({patients} patients, seed {seed})")
+    counts = uk_extract_mod.generate_uk_extract(
+        out,
+        uk_extract_mod.UkExtractConfig(patients=patients, seed=seed),
+    )
+    for name, n in counts.items():
+        console.print(f"  {name:<25} {n:>8,} rows")
 
 
 if __name__ == "__main__":

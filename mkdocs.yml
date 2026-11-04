@@ -1,0 +1,48 @@
+site_name: TraceMap
+site_description: Documentation-first OMOP CDM v5.4 pipeline with end-to-end provenance.
+site_url: https://example.com/tracemap/
+repo_url: https://github.com/example/tracemap
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.expand
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Home: index.md
+  - Mappings:
+      - Overview: mappings/index.md
+      - person: mappings/person.md
+      - observation_period: mappings/observation_period.md
+      - visit_occurrence: mappings/visit_occurrence.md
+      - condition_occurrence: mappings/condition_occurrence.md
+      - drug_exposure: mappings/drug_exposure.md
+      - procedure_occurrence: mappings/procedure_occurrence.md
+      - measurement: mappings/measurement.md
+      - observation: mappings/observation.md
+      - death: mappings/death.md
+      - location: mappings/location.md
+      - care_site: mappings/care_site.md
+      - provider: mappings/provider.md
+      - cdm_source: mappings/cdm_source.md
+      - metadata: mappings/metadata.md
+  - Lineage:
+      - Whole project: lineage/project.md
+  - Five Safes: five_safes.md
+  - Data quality: data_quality.md
+  - Decisions: decisions/README.md

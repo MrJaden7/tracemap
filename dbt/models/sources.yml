@@ -16,6 +16,10 @@ sources:
       - name: synthea_organizations
       - name: synthea_providers
       - name: load_manifest
+      - name: uk_patients
+      - name: uk_diagnoses
+      - name: uk_procedures
+      - name: uk_admissions
 
   - name: vocab
     description: "OMOP Standardized Vocabularies loaded from Athena."
@@ -33,3 +37,4 @@ sources:
     tables:
       - name: cdm_run
       - name: vocabulary_load
+      - name: synthea_linkage_keys

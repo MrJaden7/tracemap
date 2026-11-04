@@ -52,6 +52,8 @@ _UNSUPPORTED_RULES_FOR_TABLE: dict[str, str] = {
     "cdm_source": "Needs derived release dates and vocabulary_version from cdm_run.",
     "measurement": "Needs filter on category IN ('laboratory', 'vital-signs').",
     "observation": "Needs filter on category NOT IN ('laboratory', 'vital-signs').",
+    "condition_occurrence": "Phase 2: unions Synthea SNOMED and UK ICD-10 sources.",
+    "person": "Phase 2: unions Synthea and UK patient tables.",
 }
 
 
@@ -238,11 +240,18 @@ def generate_cdm_model(spec: MappingSpec) -> str:
 
 
 def write_cdm_models(spec_dir: Path | None = None, out_dir: Path | None = None) -> list[Path]:
-    """Write every CDM model file. Returns the paths written."""
+    """Write every CDM model file. Returns the paths written.
+
+    Tables in _UNSUPPORTED_RULES_FOR_TABLE are left alone: their file on disk is the
+    hand-written override that finalises the stub, and overwriting it would clobber the
+    override. The generator only ever touches files for tables it fully generates.
+    """
     out_dir = out_dir or CDM_MODELS_DIR
     out_dir.mkdir(parents=True, exist_ok=True)
     written = []
     for name, spec in sorted(load_all_specs(spec_dir).items()):
+        if name in _UNSUPPORTED_RULES_FOR_TABLE:
+            continue
         path = out_dir / f"{name}.sql"
         path.write_text(generate_cdm_model(spec), encoding="utf-8")
         written.append(path)
