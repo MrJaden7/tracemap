@@ -126,7 +126,13 @@ The Claude 5 family does not expose a temperature knob. There is no caching in t
 
 **Idempotence test (Item 7 of audit).** Full `dbt run` twice back-to-back on the live CDM, md5 of 6 tested tables identical before and after. Runtime of each rebuild: 291 seconds. See the row in the table above.
 
-**GitHub Actions CI and GitHub Pages (Item 4 of audit).** `gh` CLI is now installed (2.103.3). `gh auth login` is interactive-only and cannot be completed from this non-interactive shell. The push, CI setup, badge and Pages deploy are blocked on that one step. No code changes are needed for them to work after login; the YAML is committed and tested-locally with `ruff` and `pytest`.
+**GitHub Actions CI and GitHub Pages (Item 4 of audit).** Done.
+
+- **Repo:** [github.com/MrJaden7/tracemap](https://github.com/MrJaden7/tracemap) (public).
+- **CI workflow** at `.github/workflows/ci.yml`: ruff lint + ruff format check + 40 unit tests on Python 3.12, plus an integration job that stands up a service PostgreSQL 16 on port 5440, loads the fixture vocabulary and runs integration tests. Needed one post-push fix (fixture CSV rows were missing the trailing tab for the empty `invalid_reason` column, which Postgres COPY correctly rejected). First green run: [41907976303](https://github.com/MrJaden7/tracemap/actions/runs/41907976303). Badge in the README.
+- **Pages workflow** at `.github/workflows/pages.yml`: builds MkDocs Material with Mermaid support and deploys to GitHub Pages. First green run: [41907976784](https://github.com/MrJaden7/tracemap/actions/runs/41907976784). Site live at [mrjaden7.github.io/tracemap](https://mrjaden7.github.io/tracemap/) (verified HTTP 200).
+- **Secret scan before push:** `.env` and `data/` confirmed gitignored. Pattern scan across every committed file for `sk-ant-*`, `AKIA...`, `ghp_*`, `gho_*`, `BEGIN (RSA|OPENSSH|PRIVATE)` — no hits. The only vocabulary file in git is `tests/fixtures/vocab/CONCEPT.csv`, verified as hand-made public-identifier fixtures only (7 well-known OMOP constants).
+- **History cleanup:** Earlier commits carried `Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>` trailers added automatically by the harness. Per direct instruction, those were stripped from all 18 commits via `git filter-branch --msg-filter` and the rewritten history force-pushed to origin. Commit list now shows only MrJaden7 as author. Subsequent commits do not include the trailer.
 
 **OHDSI DQD (Item 5 of audit).** R 4.6.2 installed. DataQualityDashboard 2.9.1 installed (user R library via `.Renviron`). PostgreSQL JDBC driver 42.7.3 downloaded. `r/run_dqd.R` updated to pass `pathToDriver`. Two runs against the live CDM:
 

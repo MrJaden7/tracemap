@@ -143,7 +143,10 @@ The top-1 accuracy lift's 95% CI lower bound is exactly 0.000. I will not call t
 
 | Thing | Value | Command |
 |---|---:|---|
-| Commits on main | 9 (about to be 10) | `git log --oneline | wc -l` |
+| Repo URL | [github.com/MrJaden7/tracemap](https://github.com/MrJaden7/tracemap) (public) | - |
+| Docs site URL | [mrjaden7.github.io/tracemap](https://mrjaden7.github.io/tracemap/) (verified HTTP 200) | - |
+| CI status | green on both CI and Pages workflows | [Actions tab](https://github.com/MrJaden7/tracemap/actions) |
+| Commits on main (post history-rewrite) | 18 | `git log --oneline | wc -l` |
 | ADRs | 13 (0001-0013) | `ls docs/decisions/*.md | wc -l` minus 1 for the README |
 | Python unit tests | 34 | `uv run pytest --collect-only -q` |
 | Python integration tests | 8 | `uv run pytest --collect-only -q -m integration` |
