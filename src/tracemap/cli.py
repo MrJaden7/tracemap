@@ -13,15 +13,19 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
+from tracemap import synthea as synthea_runner
 from tracemap.config import get_settings
 from tracemap.db import connect
-from tracemap.load import ddl, vocab
+from tracemap.load import ddl, raw, vocab
+from tracemap.spec import load_all_specs
 
 app = typer.Typer(help="TraceMap: documentation-first OMOP CDM pipeline.", no_args_is_help=True)
 db_app = typer.Typer(help="Database setup commands.", no_args_is_help=True)
 vocab_app = typer.Typer(help="OMOP vocabulary commands.", no_args_is_help=True)
+synthea_app = typer.Typer(help="Synthea synthetic data commands.", no_args_is_help=True)
 app.add_typer(db_app, name="db")
 app.add_typer(vocab_app, name="vocab")
+app.add_typer(synthea_app, name="synthea")
 
 console = Console()
 
@@ -45,6 +49,15 @@ def db_init(
         count = ddl.apply_tables_and_primary_keys(conn)
     schemas = ", ".join(ddl.PROJECT_SCHEMAS)
     console.print(f"Created schemas {schemas} and ran {count} DDL statements.")
+
+
+@db_app.command("migrate")
+def db_migrate() -> None:
+    """Re-apply the etl_meta/raw DDL (idempotent). Use to add new tables without dropping data."""
+    with connect() as conn:
+        for statement in ddl.split_statements(ddl.ETL_META_FILE.read_text(encoding="utf-8")):
+            conn.execute(statement)
+    console.print(f"Applied {ddl.ETL_META_FILE.name}")
 
 
 @db_app.command("indices")
@@ -111,6 +124,106 @@ def vocab_load(
     for r in results:
         summary.add_row(r.table, f"{r.file_rows:,}", f"{r.loaded_rows:,}")
     console.print(summary)
+
+
+@synthea_app.command("fetch")
+def synthea_fetch() -> None:
+    """Download the Synthea jar (pinned version) and verify its SHA-256."""
+    settings = get_settings()
+    jar = synthea_runner.fetch_jar(settings.synthea_dir)
+    console.print(f"Synthea {synthea_runner.SYNTHEA_VERSION} jar ready at {jar}")
+
+
+@synthea_app.command("generate")
+def synthea_generate(
+    patients: Annotated[int, typer.Option("--patients", "-p", help="Number of patients.")] = 5000,
+    seed: Annotated[int, typer.Option("--seed", "-s", help="Random seed.")] = 42,
+    name: Annotated[
+        str, typer.Option("--name", help="Subfolder under data/synthea/output.")
+    ] = "full",
+) -> None:
+    """Generate synthetic patient CSVs with a fixed seed."""
+    settings = get_settings()
+    output = settings.synthea_dir / "output" / name
+    console.print(
+        f"Generating {patients} patients (seed {seed}, Synthea {synthea_runner.SYNTHEA_VERSION}) "
+        f"into {output}"
+    )
+    run = synthea_runner.generate(settings.synthea_dir, output, patients, seed)
+    console.print(
+        f"Done. {run.patients} patients requested, jar sha256 {run.jar_sha256[:12]}..., "
+        f"output in {run.output_dir}"
+    )
+
+
+raw_app = typer.Typer(help="Raw CSV loader commands.", no_args_is_help=True)
+app.add_typer(raw_app, name="raw")
+
+
+@raw_app.command("load")
+def raw_load(
+    source: Annotated[
+        str, typer.Option("--source", help="Source system name, e.g. synthea.")
+    ] = "synthea",
+    dir_opt: Annotated[
+        Path | None, typer.Option("--dir", help="CSV folder (default full set).")
+    ] = None,
+    seed: Annotated[int, typer.Option("--seed", help="Synthea seed, recorded in cdm_run.")] = 42,
+) -> None:
+    """Load CSVs from a source folder into raw.* tables with checksums and a run id."""
+    settings = get_settings()
+    if dir_opt is None:
+        if source != "synthea":
+            console.print("[red]--dir is required for non-synthea sources[/red]")
+            raise typer.Exit(code=1)
+        dir_opt = settings.synthea_dir / "output" / "full" / "csv"
+    if not dir_opt.is_dir():
+        console.print(f"[red]No such folder: {dir_opt}[/red]")
+        raise typer.Exit(code=1)
+
+    csv_files = raw.discover_synthea_csvs(dir_opt)
+    if not csv_files:
+        console.print(f"[red]No CSV files in {dir_opt}[/red]")
+        raise typer.Exit(code=1)
+
+    with connect() as conn:
+        run_id = raw.start_run(conn, synthea_seed=seed)
+        console.print(f"Run {run_id} started ({source}, {len(csv_files)} files in {dir_opt})")
+        loaded = []
+        try:
+            for csv_file in csv_files:
+                raw.create_raw_table(conn, csv_file)
+                result = raw.load_csv(conn, csv_file, run_id)
+                loaded.append(result)
+                console.print(
+                    f"  {csv_file.table:<35} {result.row_count:>10,} rows  "
+                    f"sha256 {result.sha256[:12]}"
+                )
+            raw.record_manifest(conn, run_id, source, loaded)
+            raw.finish_run(conn, run_id, "completed")
+            conn.commit()
+        except Exception:
+            raw.finish_run(conn, run_id, "failed")
+            conn.commit()
+            raise
+    console.print(f"Run {run_id} completed. Loaded {sum(lf.row_count for lf in loaded):,} rows.")
+
+
+spec_app = typer.Typer(help="Mapping specification commands.", no_args_is_help=True)
+app.add_typer(spec_app, name="spec")
+
+
+@spec_app.command("check")
+def spec_check() -> None:
+    """Validate every YAML file in mapping_spec/ and print a summary."""
+    specs = load_all_specs()
+    for name, spec in sorted(specs.items()):
+        fields = sum(len(s.fields) for s in spec.sources)
+        sources = ", ".join(spec.source_systems)
+        console.print(
+            f"  {name:<25} v{spec.spec_version:<6}  {fields:>3} fields  sources: {sources}"
+        )
+    console.print(f"{len(specs)} specs validated.")
 
 
 if __name__ == "__main__":

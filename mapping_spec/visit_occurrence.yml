@@ -1,0 +1,68 @@
+target_table: visit_occurrence
+spec_version: 0.1.0
+description: >
+  One row per Synthea encounter. Encounter class strings (inpatient, outpatient,
+  emergency and others) are mapped to Visit concepts in the intermediate layer via a
+  reference table. The reasoning for each choice is recorded there and in ADR 0008.
+
+sources:
+  - source_system: synthea
+    source_table: raw.synthea_encounters
+    grain: one row per encounter
+    fields:
+      - target: visit_occurrence_id
+        rule: cast_int
+        from: _source_row
+        notes: Deterministic surrogate key, source row number, so a rerun yields identical ids.
+
+      - target: person_id
+        rule: lookup
+        from: patient
+        via: etl_meta.person_key_map
+
+      - target: visit_concept_id
+        rule: lookup
+        from: encounterclass
+        via: etl_meta.synthea_encounterclass_map
+        notes: inpatient->9201, outpatient->9202, emergency->9203, others documented in table.
+
+      - target: visit_start_date
+        rule: cast_date
+        from: start
+
+      - target: visit_start_datetime
+        rule: cast_datetime
+        from: start
+
+      - target: visit_end_date
+        rule: cast_date
+        from: stop
+
+      - target: visit_end_datetime
+        rule: cast_datetime
+        from: stop
+
+      - target: visit_type_concept_id
+        rule: constant
+        value: 32817
+        label: EHR
+        notes: Synthea is generated as an EHR-style extract.
+
+      - target: care_site_id
+        rule: lookup
+        from: organization
+        via: etl_meta.care_site_key_map
+
+      - target: provider_id
+        rule: lookup
+        from: provider
+        via: etl_meta.provider_key_map
+
+      - target: visit_source_value
+        rule: copy
+        from: encounterclass
+
+      - target: visit_source_concept_id
+        rule: constant
+        value: 0
+        label: No matching concept

@@ -1,0 +1,29 @@
+target_table: death
+spec_version: 0.1.0
+description: >
+  One row per deceased Synthea patient. Taken from patients.deathdate when non-null.
+  Plausibility (no clinical events after death beyond a small tolerance) is a data
+  quality test, not a mapping rule.
+
+sources:
+  - source_system: synthea
+    source_table: raw.synthea_patients
+    grain: one row per deceased patient
+    fields:
+      - target: person_id
+        rule: lookup
+        from: id
+        via: etl_meta.person_key_map
+
+      - target: death_date
+        rule: cast_date
+        from: deathdate
+
+      - target: death_datetime
+        rule: cast_datetime
+        from: deathdate
+
+      - target: death_type_concept_id
+        rule: constant
+        value: 32817
+        label: EHR

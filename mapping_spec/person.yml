@@ -1,0 +1,71 @@
+target_table: person
+spec_version: 0.1.0
+description: >
+  One row per distinct source patient. Synthea patients are keyed by UUID, which is
+  mapped to the integer person_id via etl_meta.person_key_map. Race and ethnicity
+  are stored as source_value only in Phase 1 (Synthea categories are US-specific and
+  do not match UK ethnicity coding; a mapping table is out of scope).
+
+sources:
+  - source_system: synthea
+    source_table: raw.synthea_patients
+    grain: one row per patient
+    fields:
+      - target: person_id
+        rule: lookup
+        from: id
+        via: etl_meta.person_key_map
+        notes: Synthea UUID mapped to integer person_id.
+
+      - target: gender_concept_id
+        rule: standard_concept_map
+        from: gender
+        source_vocabulary: Gender
+        relationship: Maps to
+        on_unmapped: concept_id_0
+        notes: Synthea values M and F map to Gender concepts 8507 and 8532.
+
+      - target: year_of_birth
+        rule: cast_int
+        from: birthdate
+        notes: Year extracted from birthdate (YYYY-MM-DD).
+
+      - target: month_of_birth
+        rule: cast_int
+        from: birthdate
+
+      - target: day_of_birth
+        rule: cast_int
+        from: birthdate
+
+      - target: birth_datetime
+        rule: cast_datetime
+        from: birthdate
+
+      - target: race_concept_id
+        rule: constant
+        value: 0
+        label: No matching concept
+        notes: Synthea race categories are US-specific; left unmapped in Phase 1.
+
+      - target: ethnicity_concept_id
+        rule: constant
+        value: 0
+        label: No matching concept
+        notes: Synthea ethnicity values are US-specific.
+
+      - target: person_source_value
+        rule: copy
+        from: id
+
+      - target: gender_source_value
+        rule: copy
+        from: gender
+
+      - target: race_source_value
+        rule: copy
+        from: race
+
+      - target: ethnicity_source_value
+        rule: copy
+        from: ethnicity

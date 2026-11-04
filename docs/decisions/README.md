@@ -11,3 +11,5 @@ An ADR is never edited to change its decision. If a decision changes, a new ADR 
 | [0003](0003-vocabulary-selection.md) | Vocabulary selection and release | Accepted |
 | [0004](0004-vocabulary-loading.md) | How vocabularies are loaded and verified | Accepted |
 | [0005](0005-verified-concept-constants.md) | Hard-coded concept IDs are verified against the vocabulary | Accepted |
+| [0006](0006-synthea-version.md) | Synthea version pinned to v3.3.0 | Accepted |
+| [0007](0007-raw-loading-and-provenance.md) | Raw loading, run tracking and provenance | Accepted |

@@ -1,0 +1,65 @@
+target_table: condition_occurrence
+spec_version: 0.1.0
+description: >
+  One row per Synthea condition record. Codes are SNOMED. Mapping a SNOMED code to its
+  standard concept via `Maps to` may land the row in the Procedure or Observation
+  domain; when it does, domain routing in the intermediate layer moves the row to
+  procedure_occurrence or observation rather than forcing it here.
+
+sources:
+  - source_system: synthea
+    source_table: raw.synthea_conditions
+    grain: one row per condition record
+    fields:
+      - target: condition_occurrence_id
+        rule: cast_int
+        from: _source_row
+
+      - target: person_id
+        rule: lookup
+        from: patient
+        via: etl_meta.person_key_map
+
+      - target: condition_concept_id
+        rule: standard_concept_map
+        from: code
+        source_vocabulary: SNOMED
+        relationship: Maps to
+        on_unmapped: concept_id_0
+        domain_routing: true
+
+      - target: condition_start_date
+        rule: cast_date
+        from: start
+
+      - target: condition_start_datetime
+        rule: cast_datetime
+        from: start
+
+      - target: condition_end_date
+        rule: cast_date
+        from: stop
+
+      - target: condition_end_datetime
+        rule: cast_datetime
+        from: stop
+
+      - target: condition_type_concept_id
+        rule: constant
+        value: 32817
+        label: EHR
+        notes: Synthea is an EHR-style export.
+
+      - target: condition_source_value
+        rule: copy
+        from: code
+
+      - target: condition_source_concept_id
+        rule: source_concept_lookup
+        from: code
+        source_vocabulary: SNOMED
+
+      - target: visit_occurrence_id
+        rule: lookup
+        from: encounter
+        via: etl_meta.visit_source_key_map
