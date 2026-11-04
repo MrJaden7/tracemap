@@ -6,7 +6,7 @@ TraceMap takes synthetic clinical records from two sources, maps them into the O
 
 **Synthetic data only.** TraceMap never uses, stores or sends real patient data. All records come from Synthea or from the project's own synthetic UK extract generator. See [Five Safes](docs/five_safes.md).
 
-![CI](https://img.shields.io/badge/CI-GitHub%20Actions-blue) ![CDM](https://img.shields.io/badge/OMOP%20CDM-v5.4-brightgreen) ![Tests](https://img.shields.io/badge/dbt%20tests-70%2F70-brightgreen)
+[![CI](https://github.com/MrJaden7/tracemap/actions/workflows/ci.yml/badge.svg)](https://github.com/MrJaden7/tracemap/actions/workflows/ci.yml) [![Pages](https://github.com/MrJaden7/tracemap/actions/workflows/pages.yml/badge.svg)](https://mrjaden7.github.io/tracemap/) ![CDM](https://img.shields.io/badge/OMOP%20CDM-v5.4-brightgreen) ![Tests](https://img.shields.io/badge/dbt%20tests-70%2F70-brightgreen) ![DQD](https://img.shields.io/badge/OHDSI%20DQD-98.98%25-brightgreen)
 
 ---
 
