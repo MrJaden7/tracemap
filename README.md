@@ -74,17 +74,19 @@ flowchart LR
 | synthea | observation          | 1,743,754 |       99.9 % |        84.9 % |
 | synthea | visit_occurrence     |   433,084 |      100.0 % |       100.0 % |
 
-**AI mapping (350-item gold set, 2 repeated runs).**
+**AI mapping (frozen held-out test set, 175 items, 5 runs per method).**
 
-| Method                     | Top-1 accuracy    | Precision         | Coverage          | Correct abstention |
-|----------------------------|-------------------|-------------------|-------------------|--------------------|
-| exact_match                | 39.7 % +/- 0.0 %  | 99.2 % +/- 0.0 %  | 34.3 % +/- 0.0 %  | 100.0 %            |
-| bm25                       | 80.0 % +/- 0.0 %  | 71.9 % +/- 0.0 %  | 95.4 % +/- 0.0 %  |   2.0 %            |
-| hybrid                     | 79.7 % +/- 0.0 %  | 71.8 % +/- 0.0 %  | 95.1 % +/- 0.0 %  |   2.0 %            |
-| llm_rerank (deterministic) | 78.0 % +/- 0.0 %  | 71.3 % +/- 0.0 %  | 93.7 % +/- 0.0 %  |   2.0 %            |
-| **llm_rerank (anthropic)** | **85.2 % +/- 0.2 %** | **92.2 % +/- 0.2 %** | **79.1 % +/- 0.4 %** | **83.0 % +/- 1.4 %** |
+| Method                   | Top-1 accuracy       | Precision            | Coverage             | Correct abstention  |
+|--------------------------|----------------------|----------------------|----------------------|---------------------|
+| exact_match              | 39.0 % +/- 0.0 %     | 98.3 % +/- 0.0 %     | 33.1 % +/- 0.0 %     | 100.0 %             |
+| bm25                     | 83.6 % +/- 0.0 %     | 73.1 % +/- 0.0 %     | 95.4 % +/- 0.0 %     |   3.4 %             |
+| hybrid                   | 83.6 % +/- 0.0 %     | 73.1 % +/- 0.0 %     | 95.4 % +/- 0.0 %     |   3.4 %             |
+| rerank_fallback_no_llm   | 82.2 % +/- 0.0 %     | 72.7 % +/- 0.0 %     | 94.3 % +/- 0.0 %     |   3.4 %             |
+| **llm_rerank_anthropic** | **89.0 % +/- 0.0 %** | **92.2 % +/- 0.0 %** | 80.6 % +/- 0.0 %     | **82.8 % +/- 0.0 %**|
 
-The constrained LLM re-ranker (Claude Sonnet, picks one of 10 candidates or NO_MATCH) lifts precision by 20 points and correct abstention from 2% to 83% with a modest coverage tradeoff. Full discussion in [docs/ai_mapping_evaluation.md](docs/ai_mapping_evaluation.md).
+**Bootstrap 95% CI, LLM minus hybrid (n = 175):** top-1 accuracy +4.6% [-0.6%, +9.7%] (not significant), coverage -14.9% [-21.1%, -9.1%], correct abstention +13.1% [+8.6%, +18.3%]. The top-1 lift is directionally positive but not statistically significant at this sample size; the real, significant wins are precision (+19 points) and correct abstention (+79 points on the full unmappable framing).
+
+Honesty notes: `rerank_fallback_no_llm` is a deterministic fallback used when no API key is set, not a baseline for the real LLM. Standard deviations are zero to three decimal places because every method is either deterministic by construction or (for the LLM) extremely consistent on this constrained JSON task; I did not increase precision to display flattering tiny stdev values. Full discussion and the [risk-coverage curve](docs/ai_mapping/risk_coverage.svg) in [docs/ai_mapping_evaluation.md](docs/ai_mapping_evaluation.md). Full audit in [docs/gap_audit.md](docs/gap_audit.md) and [docs/fact_sheet.md](docs/fact_sheet.md).
 
 ## Row-level provenance
 

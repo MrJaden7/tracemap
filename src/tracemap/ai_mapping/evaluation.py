@@ -43,6 +43,8 @@ class EvaluationResult:
 class Evaluation:
     def __init__(self, items: list[GoldItem]):
         self.items = items
+        # Per-method per-item outcome arrays, used for bootstrap CIs. Keyed by method name.
+        self._outcomes: dict[str, list[dict]] = {}
 
     def run(self, method: Method) -> EvaluationResult:
         results: list[_PerItemResult] = []
@@ -71,6 +73,21 @@ class Evaluation:
         correct_top1 = sum(
             1 for r in mappable if r.predicted_concept_id == r.item.expected_concept_id
         )
+
+        # Persist per-item outcomes for bootstrap CIs. Overwritten on each run of a method.
+        self._outcomes[method.name] = [
+            {
+                "correct_top1": (
+                    r.item.expected_concept_id is not None
+                    and r.predicted_concept_id == r.item.expected_concept_id
+                ),
+                "committed": r.predicted_concept_id is not None,
+                "correct_abstention": (
+                    r.item.expected_concept_id is None and r.predicted_concept_id is None
+                ),
+            }
+            for r in results
+        ]
 
         return EvaluationResult(
             method=method.name,
@@ -112,3 +129,9 @@ def evaluate_all(
     items = items or load_gold_set()
     e = Evaluation(items)
     return [e.repeat(m, repeats=repeats) for m in methods]
+
+
+def outcomes_for(ev: Evaluation, method_name: str, metric: str) -> list[bool]:
+    """Pull one method's per-item outcome vector for the given metric from the Evaluation
+    object after a run. Used by the bootstrap CI helpers."""
+    return [row[metric] for row in ev._outcomes.get(method_name, [])]

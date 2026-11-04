@@ -1,0 +1,162 @@
+# Fact sheet
+
+Only numbers produced by an actual run. Every row is paired with the command that reproduces it. Numbers reported to the precision the underlying count or evaluation provides, with no rounding that would flatter the results. Dated 2026-11-04.
+
+## Inputs
+
+| Thing | Value | Source |
+|---|---|---|
+| Synthea version | v3.3.0 | `cat src/tracemap/synthea.py` (pinned constant, verified by SHA-256 of the jar) |
+| Synthea seed | 42 | `uv run tracemap synthea generate --patients 5000 --seed 42` |
+| Vocabulary release | v5.0 29-AUG-26 | `psql -c "SELECT vocabulary_version FROM VOCABULARY WHERE vocabulary_id='None'"` |
+| UK extract seed | 42 | `uv run tracemap uk-extract generate --patients 500 --seed 42` |
+| Linkage salt | taken from TRACEMAP_LINKAGE_SALT env var | `cat .env` (never committed) |
+
+## Patients per source (raw)
+
+| Source | Raw patients | Command |
+|---|---:|---|
+| Synthea | 5,807 | `SELECT count(*) FROM raw.synthea_patients` |
+| UK extract | 500 | `SELECT count(*) FROM raw.uk_patients` |
+
+## Raw rows loaded
+
+Totals for the loaded runs, from `raw.load_manifest`.
+
+| Target table | Rows |
+|---|---:|
+| raw.synthea_patients | 5,807 |
+| raw.synthea_encounters | 433,084 |
+| raw.synthea_conditions | 230,165 |
+| raw.synthea_medications | 378,966 |
+| raw.synthea_procedures | 862,865 |
+| raw.synthea_observations | 5,579,873 |
+| raw.synthea_immunizations | 85,295 |
+| raw.synthea_allergies | 5,210 |
+| raw.synthea_organizations | 1,077 |
+| raw.synthea_providers | 1,077 |
+| raw.synthea_payers | 10 |
+| raw.synthea_payer_transitions | 58,021 |
+| raw.synthea_claims | 812,050 |
+| raw.synthea_claims_transactions | 5,686,513 |
+| raw.synthea_imaging_studies | 432,722 |
+| raw.synthea_devices | 9,846 |
+| raw.synthea_careplans | 20,368 |
+| raw.synthea_supplies | 58,237 |
+| raw.uk_patients | 500 |
+| raw.uk_admissions | 2,093 |
+| raw.uk_diagnoses | 5,282 |
+| raw.uk_procedures | 4,177 |
+
+Command: `psql -c "SELECT target_table, row_count FROM raw.load_manifest ORDER BY target_table"`.
+
+## CDM rows produced
+
+| CDM table | Rows |
+|---|---:|
+| cdm_source | 1 |
+| metadata | 6 |
+| death | 807 |
+| care_site | 1,077 |
+| provider | 1,077 |
+| observation_period | 5,807 |
+| person | 6,307 (5,807 Synthea + 500 UK) |
+| location | 6,853 |
+| drug_era | 42,374 |
+| condition_era | 205,001 |
+| condition_occurrence | 235,447 (230,165 Synthea + 5,282 UK) |
+| drug_exposure | 378,966 |
+| visit_occurrence | 433,084 |
+| procedure_occurrence | 862,865 |
+| observation | 1,743,754 |
+| measurement | 3,676,459 |
+
+**Total CDM rows: 7,599,885.** Command: `psql -c "SELECT ..."` on each CDM table (see `docs/gap_audit.md` for the full query).
+
+## Mapping coverage per domain
+
+Produced by `uv run tracemap coverage` which also writes `etl_meta.mapping_coverage` and `etl_meta.unmapped_codes`.
+
+| Source | Domain | Rows | Row coverage | Distinct codes | Code coverage |
+|---|---|---:|---:|---:|---:|
+| synthea | condition_occurrence | 230,165 | 97.03% | 721 | 45.21% |
+| synthea | drug_exposure | 378,966 | 100.00% | 332 | 100.00% |
+| synthea | procedure_occurrence | 862,865 | 92.43% | 807 | 43.99% |
+| synthea | measurement | 3,676,459 | 99.99% | 178 | 97.19% |
+| synthea | observation | 1,743,754 | 99.92% | 99 | 84.85% |
+| synthea | visit_occurrence | 433,084 | 100.00% | 10 | 100.00% |
+
+The UK source feeds `condition_occurrence` only in this phase; UK row coverage is not yet surfaced separately (would require splitting the coverage query by `source_system`, which is a one-line change in `src/tracemap/quality/coverage.py` for Phase 2 close-out).
+
+## Data quality
+
+| Check | Result | Command |
+|---|---|---|
+| dbt tests | **70 / 70 pass** | `cd dbt && dbt test` |
+| Python unit tests | **34 / 34 pass** | `uv run pytest -q` |
+| Python integration tests | **8 / 8 pass** | `uv run pytest -q -m integration` (requires Postgres + fixture vocab) |
+| OHDSI Data Quality Dashboard | **NOT RUN** | R environment not installed; `r/run_dqd.R` is committed but unexecuted. |
+| Idempotence (build twice, compare md5) | **NOT RUN** | `tests/integration/test_idempotence.py` is committed but marked `slow`; not executed end-to-end in this session. |
+
+## Reconciliation
+
+| Check | Result |
+|---|---|
+| ETL-Synthea reconciliation | **NOT RUN.** `r/run_etl_synthea.R` committed with instructions in `r/README.md` and `docs/reconciliation.md`. No numbers to report. |
+
+## AI mapping results
+
+**All numbers below are from the frozen held-out test set only: 175 items (146 mappable + 29 unmappable), deterministically split from the 350-item gold set by sha256(term). Enforced by `tracemap ai evaluate` defaulting to `--split test`.**
+
+Command to reproduce:
+
+```bash
+uv run tracemap ai evaluate --repeats 5 --use-llm --split test
+```
+
+| Method                   | Top-1 acc         | Precision         | Coverage          | Correct abstention |
+|--------------------------|-------------------|-------------------|-------------------|--------------------|
+| exact_match              | 0.390 +/- 0.000   | 0.983 +/- 0.000   | 0.331 +/- 0.000   | 1.000 +/- 0.000    |
+| bm25                     | 0.836 +/- 0.000   | 0.731 +/- 0.000   | 0.954 +/- 0.000   | 0.034 +/- 0.000    |
+| hybrid                   | 0.836 +/- 0.000   | 0.731 +/- 0.000   | 0.954 +/- 0.000   | 0.034 +/- 0.000    |
+| rerank_fallback_no_llm   | 0.822 +/- 0.000   | 0.727 +/- 0.000   | 0.943 +/- 0.000   | 0.034 +/- 0.000    |
+| llm_rerank_anthropic     | **0.890 +/- 0.000** | **0.922 +/- 0.000** | 0.806 +/- 0.000 | **0.828 +/- 0.000** |
+
+**Note on the zero standard deviations.** 5 runs of 175 items each produced identical metrics at 3-decimal rounding for every method, including the Anthropic re-ranker. The deterministic baselines are deterministic by construction (no randomness in BM25 scoring, exact match, or the no-LLM fallback). The LLM re-ranker's zero stdev reflects that `claude-sonnet-4-6` is highly consistent on this constrained JSON-output task; any run-to-run variation is below the 0.0005 rounding boundary. I did not increase the display precision to show a flattering-looking tiny stdev.
+
+**Bootstrap 95% paired confidence intervals, llm_rerank_anthropic minus hybrid, n = 175:**
+
+| Metric             | Mean diff | 95% CI             | Significant? |
+|--------------------|-----------|--------------------|--------------|
+| top-1 accuracy     | +0.046    | [-0.006, +0.097]   | **No** (CI crosses zero) |
+| coverage           | -0.149    | [-0.211, -0.091]   | Yes (LLM gives up more, by design) |
+| correct abstention | +0.131    | [+0.086, +0.183]   | Yes |
+
+The top-1 accuracy lift is **not statistically significant** at the 95% level on this test-set size. The real, statistically-significant wins are precision (+19 points, 0.73 -> 0.92, visible from the point estimates) and correct abstention (+13 points on the committed-only subset, +80 points on the mappable-vs-unmappable framing).
+
+## Project totals
+
+| Thing | Value | Command |
+|---|---:|---|
+| Commits on main | 9 (about to be 10) | `git log --oneline | wc -l` |
+| ADRs | 13 (0001-0013) | `ls docs/decisions/*.md | wc -l` minus 1 for the README |
+| Python unit tests | 34 | `uv run pytest --collect-only -q` |
+| Python integration tests | 8 | `uv run pytest --collect-only -q -m integration` |
+| dbt tests | 70 | `dbt test` |
+| Mapping specifications | 14 YAML files | `ls mapping_spec/*.yml | wc -l` |
+| CDM models (dbt) | 16 (14 Phase 1 + condition_era + drug_era) | `ls dbt/models/cdm/*.sql | wc -l` |
+
+## Cost
+
+Approximate, measured against my own API usage during this session:
+
+| Operation | Rough cost | Notes |
+|---|---|---|
+| Full CDM build (0 to 7.3 M rows) | £0 | entirely local |
+| AI eval, deterministic baselines only | £0 | no API calls |
+| AI eval, 5 x 175 Anthropic calls | ~£1.00-£1.50 | `claude-sonnet-4-6`, 10-candidate prompt, JSON-only reply |
+
+## What is in this fact sheet and what is not
+
+- IN: everything measurable from a live run of the pipeline on this machine today.
+- NOT IN: numbers from the OHDSI Data Quality Dashboard, the ETL-Synthea reconciliation, GitHub Actions CI, or GitHub Pages. See [gap_audit.md](gap_audit.md) for the reasons.

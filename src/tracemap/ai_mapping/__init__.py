@@ -8,7 +8,13 @@ and be in an expected domain, otherwise the suggestion is rejected.
 """
 
 from tracemap.ai_mapping.evaluation import Evaluation, EvaluationResult, GoldItem
-from tracemap.ai_mapping.gold import GOLD_PATH, build_gold_set, load_gold_set
+from tracemap.ai_mapping.gold import (
+    GOLD_PATH,
+    build_gold_set,
+    load_dev_set,
+    load_gold_set,
+    load_test_set,
+)
 from tracemap.ai_mapping.methods import (
     BM25Method,
     ExactMatchMethod,
@@ -16,6 +22,7 @@ from tracemap.ai_mapping.methods import (
     LlmReRanker,
     Method,
     Prediction,
+    RerankFallbackNoLlm,
 )
 
 __all__ = [
@@ -29,6 +36,9 @@ __all__ = [
     "LlmReRanker",
     "Method",
     "Prediction",
+    "RerankFallbackNoLlm",
     "build_gold_set",
+    "load_dev_set",
     "load_gold_set",
+    "load_test_set",
 ]

@@ -21,11 +21,14 @@ from tracemap.ai_mapping import (
     ExactMatchMethod,
     HybridMethod,
     LlmReRanker,
+    RerankFallbackNoLlm,
     build_gold_set,
     load_gold_set,
+    load_test_set,
 )
 from tracemap.ai_mapping import gold as gold_mod
-from tracemap.ai_mapping.evaluation import Evaluation
+from tracemap.ai_mapping.evaluation import Evaluation, outcomes_for
+from tracemap.ai_mapping.statistics import bootstrap_diff
 from tracemap.config import get_settings
 from tracemap.db import connect
 from tracemap.generate import write_cdm_models, write_docs, write_schema_tests
@@ -451,14 +454,33 @@ def ai_evaluate(
     use_llm: Annotated[
         bool, typer.Option("--use-llm", help="Include Anthropic re-ranker.")
     ] = False,
+    split: Annotated[
+        str, typer.Option(help="Which gold-set split: 'test' (default), 'dev', or 'all'.")
+    ] = "test",
 ) -> None:
-    """Run every mapping method against the gold set and print the summary."""
-    items = load_gold_set()
-    methods = [ExactMatchMethod(), BM25Method(), HybridMethod(), LlmReRanker(mode="deterministic")]
+    """Run every mapping method against the FROZEN HELD-OUT TEST SET and print the summary.
+
+    The gold set is split deterministically into dev and test halves by sha256(term). All
+    reported numbers use the test half only, unless --split dev or --split all is passed.
+    """
+    if split == "test":
+        items = load_test_set()
+    elif split == "dev":
+        from tracemap.ai_mapping import load_dev_set
+
+        items = load_dev_set()
+    elif split == "all":
+        items = load_gold_set()
+    else:
+        console.print(f"[red]Unknown split: {split}[/red]")
+        raise typer.Exit(code=1)
+    methods = [ExactMatchMethod(), BM25Method(), HybridMethod(), RerankFallbackNoLlm()]
     if use_llm:
         methods.append(LlmReRanker(mode="anthropic"))
     e = Evaluation(items)
-    table = Table(title=f"AI mapping evaluation ({len(items)} items, {repeats} runs each)")
+    table = Table(
+        title=f"AI mapping evaluation ({split} set, {len(items)} items, {repeats} runs each)"
+    )
     for c in ("Method", "Top-1 acc", "Precision", "Coverage", "Correct abstention"):
         table.add_column(c)
 
@@ -476,6 +498,35 @@ def ai_evaluate(
             _fmt(summary, "correct_abstention_rate"),
         )
     console.print(table)
+
+    # Bootstrap CIs for the llm_rerank_anthropic vs hybrid comparison.
+    if use_llm:
+        llm_out = {
+            m: outcomes_for(e, "llm_rerank_anthropic", m)
+            for m in ("correct_top1", "committed", "correct_abstention")
+        }
+        hyb_out = {
+            m: outcomes_for(e, "hybrid", m)
+            for m in ("correct_top1", "committed", "correct_abstention")
+        }
+        if llm_out["correct_top1"] and hyb_out["correct_top1"]:
+            ci_table = Table(title="llm_rerank_anthropic minus hybrid, 95% paired bootstrap CI")
+            for c in ("Metric", "Mean diff", "95% CI lower", "95% CI upper", "n"):
+                ci_table.add_column(c)
+            for metric, label in [
+                ("correct_top1", "top-1 accuracy"),
+                ("committed", "coverage"),
+                ("correct_abstention", "correct abstention"),
+            ]:
+                ci = bootstrap_diff(llm_out[metric], hyb_out[metric])
+                ci_table.add_row(
+                    label,
+                    f"{ci.mean_diff:+.3f}",
+                    f"{ci.lower:+.3f}",
+                    f"{ci.upper:+.3f}",
+                    str(ci.n),
+                )
+            console.print(ci_table)
 
 
 if __name__ == "__main__":

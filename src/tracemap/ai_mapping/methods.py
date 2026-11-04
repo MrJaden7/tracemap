@@ -161,20 +161,47 @@ LLM_SYSTEM_PROMPT = (
 )
 
 
+class RerankFallbackNoLlm:
+    """Deterministic fallback that re-ranks the hybrid candidates WITHOUT calling any LLM.
+
+    This method exists only so the evaluation harness runs offline and in CI without an
+    API key. It picks the top hybrid candidate for substantive terms and abstains for
+    very short or empty-token terms. It is NOT an LLM, NOT a mock of an LLM, and NOT a
+    baseline for the real LLM re-ranker. It is a deterministic reference point at the
+    same pipeline position where the real LLM would sit.
+    """
+
+    name = "rerank_fallback_no_llm"
+
+    def __init__(self):
+        self.hybrid = HybridMethod(top_k=10)
+
+    def predict(self, term: str) -> Prediction:
+        base = self.hybrid.predict(term)
+        if not base.candidates:
+            return Prediction(None, "no candidates", [])
+        toks = _normalise(term).split()
+        if len(toks) < 2:
+            return Prediction(None, "no_llm_fallback: short term", base.candidates)
+        return Prediction(base.candidates[0].concept_id, "no_llm_fallback: top-1", base.candidates)
+
+
 class LlmReRanker:
     """LLM-based re-ranker, constrained to the candidate list.
 
-    Modes:
-      - mode='deterministic' (default): returns the top hybrid candidate, no network call.
-        This lets the evaluation framework run offline and in CI.
-      - mode='anthropic': calls the Anthropic API with the candidate list. Requires
-        ANTHROPIC_API_KEY. Verifies the chosen concept_id appears in the candidates
-        before accepting it; otherwise returns NO_MATCH with reason.
+    Calls the Anthropic API with the term and 10 hybrid candidates. Requires
+    ANTHROPIC_API_KEY. Verifies the chosen concept_id appears in the candidates before
+    accepting it; otherwise returns NO_MATCH with reason.
     """
 
-    name = "llm_rerank"
+    name = "llm_rerank_anthropic"
 
-    def __init__(self, mode: str = "deterministic"):
+    def __init__(self, mode: str = "anthropic"):
+        if mode != "anthropic":
+            raise ValueError(
+                "LlmReRanker only supports mode='anthropic'. "
+                "Use RerankFallbackNoLlm for the offline deterministic fallback."
+            )
         self.mode = mode
         self.hybrid = HybridMethod(top_k=10)
 
@@ -182,16 +209,7 @@ class LlmReRanker:
         base = self.hybrid.predict(term)
         if not base.candidates:
             return Prediction(None, "no candidates", [])
-        if self.mode == "deterministic":
-            # Deterministic stub: take top hybrid candidate if score is strong, else abstain
-            # for unmappable-looking terms (very short or stopword-only).
-            toks = _normalise(term).split()
-            if len(toks) < 2:
-                return Prediction(None, "deterministic stub: short term", base.candidates)
-            return Prediction(base.candidates[0].concept_id, "deterministic top-1", base.candidates)
-        if self.mode == "anthropic":
-            return self._predict_anthropic(term, base.candidates)
-        raise ValueError(f"Unknown mode {self.mode}")
+        return self._predict_anthropic(term, base.candidates)
 
     def _predict_anthropic(self, term: str, candidates: list[Candidate]) -> Prediction:
         try:

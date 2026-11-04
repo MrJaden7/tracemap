@@ -183,11 +183,14 @@ def load_gold_set(path: Path | None = None) -> list[GoldItem]:
         return [GoldItem.from_json(line) for line in f if line.strip()]
 
 
-def deterministic_split(items: list[GoldItem], dev_fraction: float = 0.5, seed: int = 42):
+def deterministic_split(
+    items: list[GoldItem], dev_fraction: float = 0.5, seed: int = 42
+) -> tuple[list[GoldItem], list[GoldItem]]:
     """Split into (dev, held_out_test) deterministically.
 
-    The 'held_out_test' set is used only for the final numbers reported in the writeup;
-    methods are tuned against 'dev'.
+    The split is based on sha256(term), so it is identical between runs of the same gold
+    set. Methods are tuned against 'dev'; `held_out_test` is used only for the final
+    numbers reported in the writeup.
     """
     ordered = sorted(items, key=lambda i: hashlib.sha256(i.term.encode()).hexdigest())
     rng = random.Random(seed)
@@ -198,3 +201,15 @@ def deterministic_split(items: list[GoldItem], dev_fraction: float = 0.5, seed: 
     dev = [ordered[i] for i in sorted(dev_ids)]
     test = [ordered[i] for i in range(len(ordered)) if i not in dev_ids]
     return dev, test
+
+
+def load_test_set(path: Path | None = None) -> list[GoldItem]:
+    """Load ONLY the held-out test half of the gold set. Used for reported results."""
+    _, test = deterministic_split(load_gold_set(path))
+    return test
+
+
+def load_dev_set(path: Path | None = None) -> list[GoldItem]:
+    """Load ONLY the development half. Used for tuning methods."""
+    dev, _ = deterministic_split(load_gold_set(path))
+    return dev
