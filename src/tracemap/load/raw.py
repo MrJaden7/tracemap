@@ -62,8 +62,7 @@ def discover_synthea_csvs(csv_dir: Path) -> list[CsvFile]:
 def discover_uk_csvs(csv_dir: Path) -> list[CsvFile]:
     """UK extract files are named uk_*.csv and load into raw.uk_* tables."""
     return [
-        CsvFile(path=p, table=f"raw.{p.stem.lower()}")
-        for p in sorted(csv_dir.glob("uk_*.csv"))
+        CsvFile(path=p, table=f"raw.{p.stem.lower()}") for p in sorted(csv_dir.glob("uk_*.csv"))
     ]
 
 

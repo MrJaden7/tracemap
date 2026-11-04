@@ -47,3 +47,18 @@ CREATE TABLE IF NOT EXISTS etl_meta.synthea_linkage_keys (
     linkage_key  text NOT NULL,
     recorded_at  timestamptz NOT NULL DEFAULT now()
 );
+
+CREATE TABLE IF NOT EXISTS etl_meta.mapping_suggestions (
+    suggestion_id      bigserial    PRIMARY KEY,
+    created_at         timestamptz  NOT NULL DEFAULT now(),
+    source_system      text         NOT NULL,
+    source_code        text         NOT NULL,
+    source_vocabulary  text,
+    suggested_concept_id bigint,
+    status             text         NOT NULL DEFAULT 'pending',
+    reason             text,
+    method             text,
+    reviewer           text,
+    reviewed_at        timestamptz,
+    notes              text
+);

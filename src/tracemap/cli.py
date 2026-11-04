@@ -16,11 +16,22 @@ from rich.console import Console
 from rich.table import Table
 
 from tracemap import synthea as synthea_runner
+from tracemap.ai_mapping import (
+    BM25Method,
+    ExactMatchMethod,
+    HybridMethod,
+    LlmReRanker,
+    build_gold_set,
+    load_gold_set,
+)
+from tracemap.ai_mapping import gold as gold_mod
+from tracemap.ai_mapping.evaluation import Evaluation
 from tracemap.config import get_settings
 from tracemap.db import connect
 from tracemap.generate import write_cdm_models, write_docs, write_schema_tests
 from tracemap.lineage import trace_row
 from tracemap.load import ddl, raw, vocab
+from tracemap.outputs import check_rows, load_rules
 from tracemap.quality import coverage as coverage_mod
 from tracemap.sources import uk_extract as uk_extract_mod
 from tracemap.spec import load_all_specs
@@ -371,6 +382,100 @@ def uk_extract_generate(
     )
     for name, n in counts.items():
         console.print(f"  {name:<25} {n:>8,} rows")
+
+
+analysis_app = typer.Typer(
+    help="Research analyses with safe-output checking.", no_args_is_help=True
+)
+app.add_typer(analysis_app, name="analysis")
+
+
+@analysis_app.command("run")
+def analysis_run(
+    name: Annotated[
+        str,
+        typer.Argument(help="Analysis name: t2dm_hba1c, hypertension_incidence, ed_to_admission"),
+    ],
+    raw_output: Annotated[
+        bool, typer.Option("--raw", help="Skip the output checker (reviewers only).")
+    ] = False,
+) -> None:
+    """Run one analysis SQL file and print its output (safe-checked by default)."""
+    analysis_dir = ddl.DDL_FILE.parents[1] / "analysis"
+    path = analysis_dir / f"{name}.sql"
+    if not path.is_file():
+        console.print(f"[red]No such analysis: {path}[/red]")
+        raise typer.Exit(code=1)
+    sql = path.read_text(encoding="utf-8")
+    with connect() as conn, conn.cursor() as cur:
+        cur.execute(sql)
+        cols = [desc.name for desc in cur.description]
+        rows = [dict(zip(cols, r, strict=False)) for r in cur.fetchall()]
+    if not raw_output:
+        rows = check_rows(rows, load_rules())
+    if not rows:
+        console.print("(no rows)")
+        return
+    table = Table(title=name + (" (raw)" if raw_output else " (safe-output)"))
+    for c in cols:
+        table.add_column(c)
+    for r in rows:
+        table.add_row(*[str(r.get(c)) for c in cols])
+    console.print(table)
+
+
+ai_app = typer.Typer(help="AI-assisted mapping evaluation.", no_args_is_help=True)
+app.add_typer(ai_app, name="ai")
+
+
+@ai_app.command("gold")
+def ai_gold(
+    rebuild: Annotated[bool, typer.Option("--rebuild", help="Rebuild the gold set.")] = False,
+    mappable: Annotated[int, typer.Option(help="Mappable terms to generate.")] = 300,
+    unmappable: Annotated[int, typer.Option(help="Unmappable terms to generate.")] = 50,
+    seed: Annotated[int, typer.Option(help="Random seed for determinism.")] = 1337,
+) -> None:
+    """Build the frozen gold-standard evaluation set from the loaded vocabulary."""
+    if not rebuild and gold_mod.GOLD_PATH.is_file():
+        items = load_gold_set()
+        console.print(f"Gold set already exists: {gold_mod.GOLD_PATH} ({len(items)} items)")
+        return
+    items = build_gold_set(mappable=mappable, unmappable=unmappable, seed=seed)
+    path = gold_mod.save_gold(items)
+    console.print(f"Wrote {len(items)} items to {path}")
+
+
+@ai_app.command("evaluate")
+def ai_evaluate(
+    repeats: Annotated[int, typer.Option(help="Number of repeated runs per method.")] = 5,
+    use_llm: Annotated[
+        bool, typer.Option("--use-llm", help="Include Anthropic re-ranker.")
+    ] = False,
+) -> None:
+    """Run every mapping method against the gold set and print the summary."""
+    items = load_gold_set()
+    methods = [ExactMatchMethod(), BM25Method(), HybridMethod(), LlmReRanker(mode="deterministic")]
+    if use_llm:
+        methods.append(LlmReRanker(mode="anthropic"))
+    e = Evaluation(items)
+    table = Table(title=f"AI mapping evaluation ({len(items)} items, {repeats} runs each)")
+    for c in ("Method", "Top-1 acc", "Precision", "Coverage", "Correct abstention"):
+        table.add_column(c)
+
+    def _fmt(summary, k):
+        m, s = summary[k]["mean"], summary[k]["stdev"]
+        return f"{m:.3f} +/- {s:.3f}"
+
+    for method in methods:
+        summary = e.repeat(method, repeats=repeats)
+        table.add_row(
+            method.name,
+            _fmt(summary, "top1_accuracy"),
+            _fmt(summary, "precision"),
+            _fmt(summary, "coverage"),
+            _fmt(summary, "correct_abstention_rate"),
+        )
+    console.print(table)
 
 
 if __name__ == "__main__":

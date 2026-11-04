@@ -17,3 +17,5 @@ An ADR is never edited to change its decision. If a decision changes, a new ADR 
 | [0009](0009-domain-routing.md) | Domain routing | Proposed (Phase 2) |
 | [0010](0010-row-lineage.md) | Row lineage and the trace command | Accepted |
 | [0011](0011-mapping-coverage.md) | Mapping coverage reporting | Accepted |
+| [0012](0012-uk-extract-and-linkage.md) | UK synthetic extract and pseudonymised linkage | Accepted |
+| [0013](0013-ai-mapping-design.md) | AI-assisted mapping design | Accepted |

@@ -1,0 +1,20 @@
+vocabulary_id	vocabulary_name	vocabulary_reference	vocabulary_version	vocabulary_concept_id
+None	OMOP Standardized Vocabularies	fixture	v0.0 FIXTURE	44819096
+SNOMED	Systematic Nomenclature of Medicine	fixture	FIXTURE	1
+ICD10	ICD-10	fixture	FIXTURE	2
+OPCS4	OPCS-4	fixture	FIXTURE	3
+dm+d	Dictionary of Medicines and Devices	fixture	FIXTURE	4
+RxNorm	RxNorm	fixture	FIXTURE	5
+RxNorm Extension	RxNorm Extension	fixture	FIXTURE	6
+LOINC	LOINC	fixture	FIXTURE	7
+UCUM	UCUM	fixture	FIXTURE	8
+CVX	CVX	fixture	FIXTURE	9
+Gender	OMOP Gender	fixture	FIXTURE	10
+Race	OMOP Race	fixture	FIXTURE	11
+Ethnicity	OMOP Ethnicity	fixture	FIXTURE	12
+Visit	OMOP Visit	fixture	FIXTURE	13
+Type Concept	OMOP Type Concept	fixture	FIXTURE	14
+Domain	OMOP Domain	fixture	FIXTURE	15
+Vocabulary	OMOP Vocabulary	fixture	FIXTURE	16
+Concept Class	OMOP Concept Class	fixture	FIXTURE	17
+Relationship	OMOP Relationship	fixture	FIXTURE	18

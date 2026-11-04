@@ -1,0 +1,10 @@
+domain_id	domain_name	domain_concept_id
+Gender	Gender	19
+Visit	Visit	20
+Type Concept	Type Concept	21
+Metadata	Metadata	22
+Condition	Condition	23
+Drug	Drug	24
+Procedure	Procedure	25
+Measurement	Measurement	26
+Observation	Observation	27

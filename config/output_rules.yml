@@ -1,0 +1,9 @@
+# Output rules applied to every cohort query result before it is exported. Thresholds
+# are environment-specific; the TVS SDE's own rules would apply in production.
+
+suppression_threshold: 10       # counts below this are shown as "<10"
+rounding_base: 5                # all surviving counts are rounded to the nearest multiple
+suppress_dependent_fields: true # suppress percentages or rates that would reveal a suppressed count
+min_cell_fraction: 0.0          # (reserved) minimum share of total before a row is suppressed
+
+suppressed_label: "<10"         # label shown in place of a suppressed value
