@@ -74,16 +74,17 @@ flowchart LR
 | synthea | observation          | 1,743,754 |       99.9 % |        84.9 % |
 | synthea | visit_occurrence     |   433,084 |      100.0 % |       100.0 % |
 
-**AI mapping (350-item gold set, 3 repeated runs).**
+**AI mapping (350-item gold set, 2 repeated runs).**
 
-| Method       | Top-1 accuracy    | Precision         | Coverage          | Correct abstention |
-|--------------|-------------------|-------------------|-------------------|--------------------|
-| exact_match  | 39.7 % +/- 0.0 %  | 99.2 % +/- 0.0 %  | 34.3 % +/- 0.0 %  | 100.0 %            |
-| bm25         | 80.0 % +/- 0.0 %  | 71.9 % +/- 0.0 %  | 95.4 % +/- 0.0 %  |   2.0 %            |
-| hybrid       | 79.7 % +/- 0.0 %  | 71.8 % +/- 0.0 %  | 95.1 % +/- 0.0 %  |   2.0 %            |
-| llm_rerank   | 78.0 % +/- 0.0 %  | 71.3 % +/- 0.0 %  | 93.7 % +/- 0.0 %  |   2.0 %            |
+| Method                     | Top-1 accuracy    | Precision         | Coverage          | Correct abstention |
+|----------------------------|-------------------|-------------------|-------------------|--------------------|
+| exact_match                | 39.7 % +/- 0.0 %  | 99.2 % +/- 0.0 %  | 34.3 % +/- 0.0 %  | 100.0 %            |
+| bm25                       | 80.0 % +/- 0.0 %  | 71.9 % +/- 0.0 %  | 95.4 % +/- 0.0 %  |   2.0 %            |
+| hybrid                     | 79.7 % +/- 0.0 %  | 71.8 % +/- 0.0 %  | 95.1 % +/- 0.0 %  |   2.0 %            |
+| llm_rerank (deterministic) | 78.0 % +/- 0.0 %  | 71.3 % +/- 0.0 %  | 93.7 % +/- 0.0 %  |   2.0 %            |
+| **llm_rerank (anthropic)** | **85.2 % +/- 0.2 %** | **92.2 % +/- 0.2 %** | **79.1 % +/- 0.4 %** | **83.0 % +/- 1.4 %** |
 
-Full discussion in [docs/ai_mapping_evaluation.md](docs/ai_mapping_evaluation.md).
+The constrained LLM re-ranker (Claude Sonnet, picks one of 10 candidates or NO_MATCH) lifts precision by 20 points and correct abstention from 2% to 83% with a modest coverage tradeoff. Full discussion in [docs/ai_mapping_evaluation.md](docs/ai_mapping_evaluation.md).
 
 ## Row-level provenance
 
