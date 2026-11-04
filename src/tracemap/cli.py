@@ -5,6 +5,8 @@ pipeline runs the same way on Windows, macOS and Linux. The Makefile is a thin s
 aliases over these commands.
 """
 
+import os
+import subprocess
 import time
 from pathlib import Path
 from typing import Annotated
@@ -17,7 +19,9 @@ from tracemap import synthea as synthea_runner
 from tracemap.config import get_settings
 from tracemap.db import connect
 from tracemap.generate import write_cdm_models, write_schema_tests
+from tracemap.lineage import trace_row
 from tracemap.load import ddl, raw, vocab
+from tracemap.quality import coverage as coverage_mod
 from tracemap.spec import load_all_specs
 
 app = typer.Typer(help="TraceMap: documentation-first OMOP CDM pipeline.", no_args_is_help=True)
@@ -236,6 +240,110 @@ def generate() -> None:
         console.print(f"  wrote {p.relative_to(ddl.DDL_FILE.parents[1])}")
     console.print(f"  wrote {schema_path.relative_to(ddl.DDL_FILE.parents[1])}")
     console.print(f"Generated {len(cdm_paths)} CDM models + schema.yml")
+
+
+@app.command("trace")
+def trace(
+    cdm_table: Annotated[str, typer.Argument(help="CDM table, e.g. condition_occurrence")],
+    cdm_id: Annotated[int, typer.Argument(help="CDM row id to trace")],
+) -> None:
+    """Trace a CDM row back to its exact source file, row, SHA-256 and run."""
+    result = trace_row(cdm_table, cdm_id)
+    if result.cdm_row is None:
+        console.print(f"[red]No row in cdm.{cdm_table} with id={cdm_id}[/red]")
+        raise typer.Exit(code=1)
+    sha = result.file_sha256 or "?"
+    console.print(f"[bold]cdm.{result.cdm_table}[/bold] id={result.cdm_id}")
+    for k, v in result.cdm_row.items():
+        if v is not None:
+            console.print(f"    {k} = {v}")
+    console.print()
+    console.print(f"[bold]Source[/bold]: {result.source_table} row {result.source_row}")
+    console.print(f"    run_id       = {result.run_id}")
+    console.print(f"    file_name    = {result.file_name}")
+    console.print(f"    file_sha256  = {sha[:16]}...")
+    console.print(f"    file_path    = {result.file_path}")
+    console.print()
+    if result.source_data:
+        console.print("[bold]Source row[/bold]:")
+        for k, v in result.source_data.items():
+            if v not in (None, "") and k not in ("_source_row", "_run_id"):
+                console.print(f"    {k} = {v}")
+
+
+@app.command("coverage")
+def coverage() -> None:
+    """Compute and persist mapping coverage per source system and domain."""
+    with connect() as conn:
+        rows = coverage_mod.compute_and_report(conn)
+    if not rows:
+        console.print("[yellow]No completed run found. Build the CDM first.[/yellow]")
+        raise typer.Exit(code=0)
+
+    table = Table(title="Mapping coverage (latest completed run)")
+    table.add_column("Source")
+    table.add_column("Domain")
+    table.add_column("Rows", justify="right")
+    table.add_column("Mapped", justify="right")
+    table.add_column("Row %", justify="right")
+    table.add_column("Codes", justify="right")
+    table.add_column("Code %", justify="right")
+    for r in rows:
+        table.add_row(
+            r.source_system,
+            r.domain,
+            f"{r.total_rows:,}",
+            f"{r.mapped_rows:,}",
+            f"{r.row_coverage_pct}%",
+            f"{r.distinct_codes:,}",
+            f"{r.code_coverage_pct}%",
+        )
+    console.print(table)
+
+
+@app.command("build")
+def build(
+    source_dir: Annotated[
+        Path | None, typer.Option("--source-dir", help="Synthea CSV folder (default full set).")
+    ] = None,
+    skip_load: Annotated[bool, typer.Option(help="Skip the raw loader step.")] = False,
+    skip_generate: Annotated[bool, typer.Option(help="Skip the model generator.")] = False,
+) -> None:
+    """End-to-end: load raw -> generate models -> dbt run -> dbt test -> coverage."""
+    settings = get_settings()
+    if not skip_load:
+        csv_dir = source_dir or settings.synthea_dir / "output" / "full" / "csv"
+        console.print(f"[bold]1/5 Loading raw from {csv_dir}[/bold]")
+        with connect() as conn:
+            run_id = raw.start_run(conn)
+            loaded = []
+            try:
+                for csv_file in raw.discover_synthea_csvs(csv_dir):
+                    raw.create_raw_table(conn, csv_file)
+                    loaded.append(raw.load_csv(conn, csv_file, run_id))
+                raw.record_manifest(conn, run_id, "synthea", loaded)
+                raw.finish_run(conn, run_id, "completed")
+                conn.commit()
+            except Exception:
+                raw.finish_run(conn, run_id, "failed")
+                conn.commit()
+                raise
+
+    if not skip_generate:
+        console.print("[bold]2/5 Generating dbt models[/bold]")
+        write_cdm_models()
+        write_schema_tests()
+
+    dbt_dir = ddl.DDL_FILE.parents[1] / "dbt"
+    env = {**os.environ, "DBT_PROFILES_DIR": str(dbt_dir)}
+    console.print("[bold]3/5 Running dbt[/bold]")
+    subprocess.run(["dbt", "run", "--project-dir", str(dbt_dir)], env=env, check=True)
+    console.print("[bold]4/5 Testing dbt[/bold]")
+    subprocess.run(["dbt", "test", "--project-dir", str(dbt_dir)], env=env, check=True)
+    console.print("[bold]5/5 Writing mapping coverage[/bold]")
+    with connect() as conn:
+        coverage_mod.write_coverage_table(conn)
+    console.print("[bold green]Build complete.[/bold green]")
 
 
 if __name__ == "__main__":
