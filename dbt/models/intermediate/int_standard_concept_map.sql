@@ -26,7 +26,11 @@ standard_concepts as (
     where standard_concept = 'S'
 )
 
-select
+-- A source concept can have more than one 'Maps to' relationship when the vocabulary
+-- authors leave the mapping ambiguous. OMOP convention is to pick one deterministically
+-- rather than silently duplicate downstream rows. We take the lowest standard_concept_id
+-- per source, documented here so the choice is reviewable.
+select distinct on (sc.source_vocabulary_id, sc.source_code)
     sc.source_code,
     sc.source_vocabulary_id,
     sc.source_concept_id,
@@ -36,3 +40,4 @@ select
 from source_concepts sc
 left join maps_to          m   on m.src_id      = sc.source_concept_id
 left join standard_concepts std on std.standard_concept_id = m.tgt_id
+order by sc.source_vocabulary_id, sc.source_code, std.standard_concept_id nulls last
