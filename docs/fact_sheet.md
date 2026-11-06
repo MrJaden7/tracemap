@@ -102,7 +102,7 @@ The UK source feeds `condition_occurrence` only in this phase; UK row coverage i
 
 | Check | Result |
 |---|---|
-| ETL-Synthea reconciliation | **NOT RUN.** `r/run_etl_synthea.R` committed with instructions in `r/README.md` and `docs/reconciliation.md`. No numbers to report. |
+| ETL-Synthea reconciliation | **DONE for 17 of 18 tables.** Reference built with `ETLSyntheaBuilder` v2.1. 5 tables match exactly (person Synthea-only, observation_period, care_site, provider, cdm_source). 3 within 10%, 2 within 20%, 3 with 2×+ divergence explained by ADR 0009 domain routing. 2 known gaps on our side (visit_detail, device_exposure - Phase 2). `cost` INSERT aborted at ~8h / 0 rows (our pipeline does not model cost; nothing to compare). Full table at [docs/reconciliation.md](reconciliation.md). |
 
 ## AI mapping results
 
@@ -166,5 +166,5 @@ Approximate, measured against my own API usage during this session:
 
 ## What is in this fact sheet and what is not
 
-- IN: everything measurable from a live run of the pipeline on this machine today.
-- NOT IN: numbers from the OHDSI Data Quality Dashboard, the ETL-Synthea reconciliation, GitHub Actions CI, or GitHub Pages. See [gap_audit.md](gap_audit.md) for the reasons.
+- IN: everything measurable from a live run of the pipeline on this machine today, including OHDSI DQD results, ETL-Synthea reconciliation row counts, GitHub Actions CI status, and GitHub Pages deployment.
+- NOT IN: reference `cost` rows (the ETL-Synthea cost INSERT was aborted at ~8h on this hardware; our pipeline does not model cost, so nothing is lost). See [reconciliation.md](reconciliation.md) and [gap_audit.md](gap_audit.md).
