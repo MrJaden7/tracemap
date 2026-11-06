@@ -10,10 +10,6 @@ TraceMap takes synthetic clinical records from two sources, maps them into the O
 
 ---
 
-## Why this exists
-
-Jaden is applying for a Data and Systems Analyst role at Oxford University Hospitals NHS Foundation Trust, working on the Thames Valley and Surrey Secure Data Environment with the Big Data Institute. The TVS SDE's Oxford OMOP Data Mapper uses documentation-first ETL with automatically generated transformation documentation and relationship diagrams. TraceMap is a working, small version of exactly that approach, built to show the hiring panel that the problems and the solutions are already understood.
-
 ## Architecture
 
 ```mermaid
